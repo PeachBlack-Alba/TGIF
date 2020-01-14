@@ -1,7 +1,7 @@
 /********************************Senate at a Glance TABLE*************************************/
 
 /*********************************object*****************************************************/
-var statistics = {
+var statisticsHouse = {
   countD: 0,
   countR: 0,
   countI: 0
@@ -10,7 +10,7 @@ var statistics = {
 /*************************************first row************************/
 var members = data.results[0].members;
 
-var tbody = document.getElementById("senate-data");
+var tbody = document.getElementById("house-data");
 
 calcStat();
 
