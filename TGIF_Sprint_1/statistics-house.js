@@ -1,4 +1,4 @@
-/********************************Senate at a Glance TABLE*************************************/
+/********************************House at a Glance TABLE*************************************/
 
 /*********************************object*****************************************************/
 var statisticsHouse = {
@@ -12,9 +12,9 @@ var members = data.results[0].members;
 
 var tbody = document.getElementById("house-data");
 
-calcStat();
+calcStatHouse();
 
-function calcStat() {
+function calcStatHouse() {
   for (var i = 0; i < members.length; i++) {
     var party = members[i].party;
 
@@ -33,3 +33,26 @@ function calcStat() {
     }
   }
 }
+
+//Render the first column, function calcStat()//
+
+function renderHouseAtGlance(target) {
+  var tr = document.createElement("tr");
+  var td1 = document.createElement("td");
+  var td2 = document.createElement("td");
+  td1.innerHTML = target;
+  if (target === "Democrats") {
+    td2.innerHTML = statisticsHouse.countD;
+  } else if (target === "Republicans") {
+    td2.innerHTML = statisticsHouse.countR;
+  } else {
+    td2.innerHTML = statisticsHouse.countI;
+  }
+
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  //   tbody.appendChild(tr);
+}
+renderHouseAtGlance("Democrats");
+renderHouseAtGlance("Republicans");
+renderHouseAtGlance("Independents");
