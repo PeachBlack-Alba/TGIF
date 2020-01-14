@@ -7,7 +7,8 @@ var statistics = {
   countI: 0
 };
 
-/*************************************first row************************/
+/*************************************first column************************/
+
 var members = data.results[0].members;
 
 var tbody = document.getElementById("senate-data");
@@ -33,20 +34,8 @@ function calcStat() {
     }
   }
 }
-//   renderGlanceTable();
 
-// function renderGlanceTable() {
-//   var tdName = document.createElement("td");
-
-//   for (var i = 0; i < stats2.length; i++) {
-//     var row = document.createElement("tr");
-//     for (var g = 0; g < 3; g++) {
-//       var cel = document.createElement("td");
-//       tdName.innerHTML = stats2.senateAtGlance[0].name;
-//     }
-//   }
-//   console.log(renderGlanceTable);
-// }
+//Render the first column, function calcStat()//
 
 function renderSenateAtGlance(target) {
   var tr = document.createElement("tr");
@@ -69,7 +58,7 @@ renderSenateAtGlance("Democrats");
 renderSenateAtGlance("Republicans");
 renderSenateAtGlance("Independents");
 
-/********************************fourth row*******************************/
+/********************************total row*******************************/
 
 // var total = [];
 
@@ -83,7 +72,7 @@ renderSenateAtGlance("Independents");
 
 // tbody.appendChild(tr);
 
-/**********************************************List*******************/
+/**********************************************Second Column*******************/
 var membersRepArray = []; // creates an array
 function listRep() {
   for (i = 0; i < members.length; i++) {
