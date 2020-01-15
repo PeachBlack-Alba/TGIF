@@ -8,7 +8,8 @@ var statisticsHouse = {
 };
 
 /*************************************first row************************/
-var members = data.results[0].members;
+var members = data.results[0]["members"];
+console.log(members);
 
 var tbody = document.getElementById("house-data");
 
@@ -20,16 +21,16 @@ function calcStatHouse() {
 
     if (party === "D") {
       console.log(party);
-      statistics.countD++;
+      statisticsHouse.countD++;
     }
 
     if (party === "R") {
       console.log(party);
-      statistics.countR++;
+      statisticsHouse.countR++;
     }
     if (party === "I") {
       console.log(party);
-      statistics.countI++;
+      statisticsHouse.countI++;
     }
   }
 }
