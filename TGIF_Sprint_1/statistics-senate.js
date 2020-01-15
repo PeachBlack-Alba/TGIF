@@ -72,28 +72,31 @@ renderSenateAtGlance("Independents");
 
 // tbody.appendChild(tr);
 
-/**********************************************Second Column*******************/
-var membersRepArray = []; // creates an array
-function listRep() {
+/*************************************** Votes with party*************************************/
+
+var membersRepArray = [];
+var membersDemArray = [];
+var membersIndArray = [];
+
+function listsenate() {
   for (i = 0; i < members.length; i++) {
-    var parties = members[i].party;
-    if (parties === "R") {
-      console.log(members[i]);
+    var party = members[i].party;
+    if (party === "R") {
       membersRep = members[i].votes_with_party_pct;
       console.log(membersRep);
       membersRepArray.push(membersRep);
+    } else if (party === "D") {
+      membersDem = members[i].votes_with_party_pct;
+      console.log(membersDem);
+      membersDemArray.push(membersDem);
+    } else if (party === "I") {
+      membersInd = members[i].votes_with_party_pct;
+      console.log(membersInd);
+      membersIndArray.push(membersInd);
     }
   }
 }
-console.log(listRep());
-// Getting sum of numbers.
-var sum = membersRepArray.reduce(function(a, b) {
-  return a + b;
-}, 0);
-console.log(sum);
-
-var totalRep = sum / membersRepArray.length;
-console.log(totalRep);
+document.write(listsenate());
 
 /**********************************************Least Engaged TABLE************************/
 

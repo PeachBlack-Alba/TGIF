@@ -62,7 +62,7 @@ var membersRepArray = [];
 var membersDemArray = [];
 var membersIndArray = [];
 
-function list() {
+function listHouse() {
   for (i = 0; i < members.length; i++) {
     var party = members[i].party;
     if (party === "R") {
@@ -80,6 +80,6 @@ function list() {
     }
   }
 }
-document.write(list());
+document.write(listHouse());
 
 /************************************SUM of numbers****************************************************/
