@@ -51,41 +51,32 @@ function calcTotalMembers() {
   console.log("democrats " + statistics.democrats.count);
 }
 
-// function to calculate total percentage votes
-
 ////////////////// function calculateTotalPercentageVotes/////////////
-var membersRepArray = [];
-var membersDemArray = [];
-var membersIndArray = [];
-var total = 0;
-var averagePercentageRepublicans = total / statistics.republicans.count;
-var averagePercentageDemocrats = total / statistics.democrats.count;
-var averagePercentageIndependents = total / statistics.independents.count;
 
 function calculateTotalPercentageVotes() {
+  var totalR = 0;
+  var totalD = 0;
+  var totalI = 0;
   for (i = 0; i < members.length; i++) {
     var party = members[i].party;
     if (party === "R") {
-      membersRep = members[i].votes_with_party_pct;
-      total = total + membersRep;
-      membersRepArray.push(membersRep);
-      console.log(averagePercentageRepublicans);
+      var membersRep = members[i].votes_with_party_pct;
+      totalR = totalR + membersRep;
     } else if (party === "D") {
       membersDem = members[i].votes_with_party_pct;
-      console.log(membersDem);
-      membersDemArray.push(membersDem);
+      totalD = totalD + membersDem;
     } else if (party === "I") {
       membersInd = members[i].votes_with_party_pct;
-      console.log(membersInd);
-      membersIndArray.push(membersInd);
+      totalI = totalI + membersInd;
     }
   }
+  console.log(totalD);
 
-  console.log(
-    "averagepercentageRepublicans " + total / statistics.republicans.count
-  );
+  statistics.republicans.percentage = totalR / statistics.republicans.count;
+  statistics.democrats.percentage = totalD / statistics.democrats.count;
+  statistics.independents.percentage = totalI / statistics.independents.count;
 }
-document.write(calculateTotalPercentageVotes(averagePercentageDemocrats));
+calculateTotalPercentageVotes();
 
 /////////////////////////Render table///////////////////////////
 
@@ -98,17 +89,18 @@ function renderSenateAtGlance(target) {
 
   if (target === "Democrats") {
     td2.innerHTML = statistics.democrats.count;
-    td3.innerHTML = averagePercentageDemocrats;
+    td3.innerHTML = Math.round(statistics.democrats.percentage);
   } else if (target === "Republicans") {
     td2.innerHTML = statistics.republicans.count;
-    td3.innerHTML = averagePercentageRepublicans;
+    td3.innerHTML = Math.round(statistics.republicans.percentage);
   } else {
     td2.innerHTML = statistics.independents.count;
-    td3.innerHTML = averagePercentageIndependents;
+    td3.innerHTML = Math.round(statistics.independents.percentage);
   }
 
   tr.appendChild(td1);
   tr.appendChild(td2);
+  tr.appendChild(td3);
   tbody.appendChild(tr);
 }
 renderSenateAtGlance("Democrats");
