@@ -83,3 +83,29 @@ function listHouse() {
 document.write(listHouse());
 
 /************************************SUM of numbers****************************************************/
+/*******************************************Least engaged House****************************************/
+var members = data.results[0].members;
+
+var tbody = document.getElementById("house-data2");
+
+//Get names//
+for (var i = 0; i < members.length; i++) {
+  var firstName = members[i].first_name;
+  var middleName = members[i].middle_name;
+  var lastName = members[i].last_name;
+  // var party = members[i].party;
+  // var state = members[i].state;
+  // var yearsOffice = members[i].seniority;
+  // var votesparty = members[i].votes_with_party_pct;
+
+  var tr = document.createElement("tr");
+  var td1 = document.createElement("td");
+
+  if (middleName === null) {
+    td1.innerHTML = firstName + " " + lastName;
+  } else {
+    td1.innerHTML = firstName + " " + middleName + " " + lastName;
+  }
+  tr.appendChild(td1);
+  tbody.appendChild(tr);
+}
