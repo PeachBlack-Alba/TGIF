@@ -16,7 +16,7 @@
 
 <body>
     <div class="header">
-        <img class="logo" src="logo.PNG" />
+        <img class="logo" src="./images/logo.PNG" />
         <button class="email">
             <a href="mailto:info@tgif.net">info@tgif.net</a>
         </button>
@@ -49,7 +49,7 @@
                     <!-- Dropdown end 1-->
                     <!-- Dopdown 2 -->
                     <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             Atendance   
                             </a>
@@ -61,8 +61,8 @@
                     <!-- End Dropdown 2 -->
                     <!-- Dopdown 3 -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             Party Loyalty
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -71,6 +71,7 @@
                         </div>
                     </li>
                     <!-- End Dropdown 3 -->
+
                 </ul>
             </div>
         </div>
@@ -80,14 +81,14 @@
     <div class="row">
         <div class="col-6">
 
-        <h1>Attendance</h1>
+        <h1>Party Loyalty</h1>
             
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
         aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
         </div>
-        <div class="col-6"><strong> House at a glance</strong>
+        <div class="col-6"><strong> Senate at a glance</strong>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -97,7 +98,7 @@
                         <th scope="col">% Voted w/Party</th>
                     </tr>
                 </thead>
-                <tbody id="house-data">
+                <tbody id="senate-data">
                         <!-- <tr>
                             <td>Democrats</td>
                             
@@ -118,7 +119,7 @@
             </table>
         </div>
         <div class="w-100"></div>
-        <div class="col-6"><strong>Least Engaged (Bottom 10% Attendance)</strong>
+        <div class="col-6"><strong>Least Engaged</strong>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -128,7 +129,7 @@
             <th scope="col">% Missed</th>
         </tr>
     </thead>
-    <tbody id="house-data2">
+    <tbody id="senate-data2">
         <!-- <tr>
             <td>Democrats</td>
         </tr>
@@ -145,7 +146,7 @@
 </table>
 
         </div>
-        <div class="col-6"><strong>Most Engaged (Top 10% Attendance)</strong>
+        <div class="col-6"><strong>Most Engaged</strong>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -155,7 +156,7 @@
                         <th scope="col">% Missed</th>
                     </tr>
                 </thead>
-                <tbody id="house-data3">
+                <tbody id="senate-data">
                     <tr>
                         <td>Democrats</td>
                         <!-- <td>Democrats</td> -->
@@ -196,9 +197,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-        <script src="./pro-congress-113-house.js"></script>
-        <script src="statistics-house.js"></script>
-        
+        <script src="./pro-Congress-113-senate.js"></script>
+        <script src="statistics-senate.js"></script>
 </body>
 
 
