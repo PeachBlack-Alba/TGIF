@@ -1,10 +1,7 @@
-/********************************Senate at a Glance TABLE*************************************/
+/////////////////////////////////Senate at a Glance TABLE///////////////////////////////////////
 
 /*********************************object*****************************************************/
 var statistics = {
-  // countD: 0,
-  // countR: 0,
-  // countI: 0,
   democrats: {
     count: 0,
     percentage: 0,
@@ -51,7 +48,7 @@ function calcTotalMembers() {
   console.log("democrats " + statistics.democrats.count);
 }
 
-////////////////// function calculateTotalPercentageVotes/////////////
+/********************************function calculateTotalPercentageVotes***********************/
 
 function calculateTotalPercentageVotes() {
   var totalR = 0;
@@ -78,7 +75,7 @@ function calculateTotalPercentageVotes() {
 }
 calculateTotalPercentageVotes();
 
-/////////////////////////Render table///////////////////////////
+/************************************Render table****************************************/
 
 function renderSenateAtGlance(target) {
   var tr = document.createElement("tr");
@@ -101,6 +98,7 @@ function renderSenateAtGlance(target) {
   tr.appendChild(td1);
   tr.appendChild(td2);
   tr.appendChild(td3);
+
   tbody.appendChild(tr);
 }
 renderSenateAtGlance("Democrats");
@@ -121,21 +119,17 @@ renderSenateAtGlance("Independents");
 
 // tbody.appendChild(tr);
 
-/**********************************************Least Engaged TABLE************************/
+/////////////////////////////////////Least Engaged TABLE////////////////////////////////
 
 var members = data.results[0].members;
 
 var tbody = document.getElementById("senate-data2");
 
-//Get names//
+/***************************************Get names****************************************/
 for (var i = 0; i < members.length; i++) {
   var firstName = members[i].first_name;
   var middleName = members[i].middle_name;
   var lastName = members[i].last_name;
-  // var party = members[i].party;
-  // var state = members[i].state;
-  // var yearsOffice = members[i].seniority;
-  // var votesparty = members[i].votes_with_party_pct;
 
   var tr = document.createElement("tr");
   var td1 = document.createElement("td");
@@ -148,28 +142,3 @@ for (var i = 0; i < members.length; i++) {
   tr.appendChild(td1);
   tbody.appendChild(tr);
 }
-
-// var members = data.results[0].members;
-
-// var tbody = document.getElementById("senate-data2");
-// var count = 0;
-// for (var i = 0; i < members.length; i++) {
-//   var party = members[i].party;
-
-//   if (party === "D") {
-//     console.log(party);
-//     count++;
-//   }
-// }
-// console.log(count);
-
-// var tr = document.createElement("tr");
-// var td1 = document.createElement("td");
-// var td2 = document.createElement("td");
-// td1.innerHTML = "Democrats";
-// td2.innerHTML = count;
-
-// tr.appendChild(td1);
-// tr.appendChild(td2);
-
-// tbody.appendChild(tr);

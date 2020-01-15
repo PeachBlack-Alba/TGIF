@@ -1,102 +1,121 @@
-/********************************House at a Glance TABLE*************************************/
+/////////////////////////////////HOUSE at a Glance TABLE///////////////////////////////////////
 
 /*********************************object*****************************************************/
-var statisticsHouse = {
-  countD: 0,
-  countR: 0,
-  countI: 0
+var statistics = {
+  democrats: {
+    count: 0,
+    percentage: 0,
+    party: "D"
+  },
+  republicans: {
+    count: 0,
+    percentage: 0,
+    party: "R"
+  },
+  independents: {
+    count: 0,
+    percentage: 0,
+    party: "D"
+  }
 };
 
-/*************************************first row**************************************/
-var members = data.results[0]["members"];
-// console.log(members);
+/*************************************first column************************/
+
+var members = data.results[0].members;
 
 var tbody = document.getElementById("house-data");
 
-calcStatHouse();
+calcTotalMembers();
 
-function calcStatHouse() {
+function calcTotalMembers() {
   for (var i = 0; i < members.length; i++) {
     var party = members[i].party;
 
     if (party === "D") {
       console.log(party);
-      statisticsHouse.countD++;
+      statistics.democrats.count++;
     }
 
     if (party === "R") {
       console.log(party);
-      statisticsHouse.countR++;
+      statistics.republicans.count++;
     }
     if (party === "I") {
       console.log(party);
-      statisticsHouse.countI++;
+      statistics.independents.count++;
     }
   }
+  console.log("democrats " + statistics.democrats.count);
 }
-/***********************************Render the first column, function calcStat()************************************************/
+
+/********************************function calculateTotalPercentageVotes***********************/
+
+function calculateTotalPercentageVotes() {
+  var totalR = 0;
+  var totalD = 0;
+  var totalI = 0;
+  for (i = 0; i < members.length; i++) {
+    var party = members[i].party;
+    if (party === "R") {
+      var membersRep = members[i].votes_with_party_pct;
+      totalR = totalR + membersRep;
+    } else if (party === "D") {
+      membersDem = members[i].votes_with_party_pct;
+      totalD = totalD + membersDem;
+    } else if (party === "I") {
+      membersInd = members[i].votes_with_party_pct;
+      totalI = totalI + membersInd;
+    }
+  }
+  console.log(totalD);
+
+  statistics.republicans.percentage = totalR / statistics.republicans.count;
+  statistics.democrats.percentage = totalD / statistics.democrats.count;
+  statistics.independents.percentage = totalI / statistics.independents.count;
+}
+calculateTotalPercentageVotes();
+
+/************************************Render table****************************************/
 
 function renderHouseAtGlance(target) {
   var tr = document.createElement("tr");
   var td1 = document.createElement("td");
   var td2 = document.createElement("td");
+  var td3 = document.createElement("td");
   td1.innerHTML = target;
+
   if (target === "Democrats") {
-    td2.innerHTML = statisticsHouse.countD;
+    td2.innerHTML = statistics.democrats.count;
+    td3.innerHTML = Math.round(statistics.democrats.percentage);
   } else if (target === "Republicans") {
-    td2.innerHTML = statisticsHouse.countR;
+    td2.innerHTML = statistics.republicans.count;
+    td3.innerHTML = Math.round(statistics.republicans.percentage);
   } else {
-    td2.innerHTML = statisticsHouse.countI;
+    td2.innerHTML = statistics.independents.count;
+    td3.innerHTML = Math.round(statistics.independents.percentage);
   }
 
   tr.appendChild(td1);
   tr.appendChild(td2);
-  //   tbody.appendChild(tr);
+  tr.appendChild(td3);
+
+  tbody.appendChild(tr);
 }
 renderHouseAtGlance("Democrats");
 renderHouseAtGlance("Republicans");
 renderHouseAtGlance("Independents");
 
-/*************************************** Votes with party*************************************/
-var membersRepArray = [];
-var membersDemArray = [];
-var membersIndArray = [];
+/////////////////////////////////Least Engaged House////////////////////////////////
 
-function listHouse() {
-  for (i = 0; i < members.length; i++) {
-    var party = members[i].party;
-    if (party === "R") {
-      membersRep = members[i].votes_with_party_pct;
-      console.log(membersRep);
-      membersRepArray.push(membersRep);
-    } else if (party === "D") {
-      membersDem = members[i].votes_with_party_pct;
-      console.log(membersDem);
-      membersDemArray.push(membersDem);
-    } else if (party === "I") {
-      membersInd = members[i].votes_with_party_pct;
-      console.log(membersInd);
-      membersIndArray.push(membersInd);
-    }
-  }
-}
-document.write(listHouse());
-
-/************************************SUM of numbers****************************************************/
-/*******************************************Least engaged House****************************************/
 var members = data.results[0].members;
 
 var tbody = document.getElementById("house-data2");
 
-//Get names//
+/***************************************Get names****************************************/
 for (var i = 0; i < members.length; i++) {
   var firstName = members[i].first_name;
   var middleName = members[i].middle_name;
   var lastName = members[i].last_name;
-  // var party = members[i].party;
-  // var state = members[i].state;
-  // var yearsOffice = members[i].seniority;
-  // var votesparty = members[i].votes_with_party_pct;
 
   var tr = document.createElement("tr");
   var td1 = document.createElement("td");
@@ -109,3 +128,18 @@ for (var i = 0; i < members.length; i++) {
   tr.appendChild(td1);
   tbody.appendChild(tr);
 }
+
+function calcMissedVotes(element) {
+  var missedVotes = [];
+  for (var i = 0; i < members.length; i++) {
+    missedVotes.push(members[i].missed_votes);
+  }
+  missedVotes.sort();
+  console.log(missedVotes);
+
+  if (missedVotes[i] <= (missedVotes[i] * 10) / 100) {
+  } else if (missedVotes[i] > (missedVotes[i] * 10) / 100) {
+    display == none;
+  }
+}
+calcMissedVotes();
