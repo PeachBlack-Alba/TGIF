@@ -103,24 +103,50 @@ document.write(listsenate());
 var members = data.results[0].members;
 
 var tbody = document.getElementById("senate-data2");
-var count = 0;
+
+//Get names//
 for (var i = 0; i < members.length; i++) {
-  var party = members[i].party;
+  var firstName = members[i].first_name;
+  var middleName = members[i].middle_name;
+  var lastName = members[i].last_name;
+  // var party = members[i].party;
+  // var state = members[i].state;
+  // var yearsOffice = members[i].seniority;
+  // var votesparty = members[i].votes_with_party_pct;
 
-  if (party === "D") {
-    console.log(party);
-    count++;
+  var tr = document.createElement("tr");
+  var td1 = document.createElement("td");
+
+  if (middleName === null) {
+    td1.innerHTML = firstName + " " + lastName;
+  } else {
+    td1.innerHTML = firstName + " " + middleName + " " + lastName;
   }
+  tr.appendChild(td1);
+  tbody.appendChild(tr);
 }
-console.log(count);
 
-var tr = document.createElement("tr");
-var td1 = document.createElement("td");
-var td2 = document.createElement("td");
-td1.innerHTML = "Democrats";
-td2.innerHTML = count;
+// var members = data.results[0].members;
 
-tr.appendChild(td1);
-tr.appendChild(td2);
+// var tbody = document.getElementById("senate-data2");
+// var count = 0;
+// for (var i = 0; i < members.length; i++) {
+//   var party = members[i].party;
 
-tbody.appendChild(tr);
+//   if (party === "D") {
+//     console.log(party);
+//     count++;
+//   }
+// }
+// console.log(count);
+
+// var tr = document.createElement("tr");
+// var td1 = document.createElement("td");
+// var td2 = document.createElement("td");
+// td1.innerHTML = "Democrats";
+// td2.innerHTML = count;
+
+// tr.appendChild(td1);
+// tr.appendChild(td2);
+
+// tbody.appendChild(tr);
