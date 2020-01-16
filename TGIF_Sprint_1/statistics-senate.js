@@ -16,7 +16,13 @@ var statistics = {
     count: 0,
     percentage: 0,
     party: "D"
-  }
+  },
+  missedVotes: 0,
+  missedVotesPct: 0,
+  votesWithPartypct: 0,
+  votesAgainstPartyPct: 0,
+  leastEngaged: [],
+  mostEngaged: []
 };
 
 /*************************************first column************************/
@@ -105,40 +111,123 @@ renderSenateAtGlance("Democrats");
 renderSenateAtGlance("Republicans");
 renderSenateAtGlance("Independents");
 
-/********************************total row*******************************/
+/////////////////////////////////Least Engaged Senate////////////////////////////////
 
-// var total = [];
-
-// var tr = document.createElement("tr");
-// var td7 = document.createElement("td");
-// var td8 = document.createElement("td");
-// td7.innerHTML = "Total";
-// td8.innerHTML = total;
-// tr.appendChild(td7);
-// tr.appendChild(td8);
-
-// tbody.appendChild(tr);
-
-/////////////////////////////////////Least Engaged TABLE////////////////////////////////
-
+//object for this function is on the top of the page//
 var members = data.results[0].members;
 
 var tbody = document.getElementById("senate-data2");
 
-/***************************************Get names****************************************/
-for (var i = 0; i < members.length; i++) {
-  var firstName = members[i].first_name;
-  var middleName = members[i].middle_name;
-  var lastName = members[i].last_name;
+/*******Function to get Least Engaged 10% missed votes******/
 
-  var tr = document.createElement("tr");
-  var td1 = document.createElement("td");
+function calcMissedVotes() {
+  var sortedMembers = members.sort(function mySorter(a, b) {
+    return a.missed_votes_pct - b.missed_votes_pct; // Because its an object, we cant use just sort.(), it loops each member member a memberb and access the key in the object. Gets the value of the key and compares with a and b and does the order.
+  });
 
-  if (middleName === null) {
-    td1.innerHTML = firstName + " " + lastName;
-  } else {
-    td1.innerHTML = firstName + " " + middleName + " " + lastName;
+  for (var i = 0; i < sortedMembers.length; i++) {
+    var tenPercent = sortedMembers.length * 0.1;
+    if (statistics.leastEngaged.length < tenPercent) {
+      //statistics.leastEngaged = lo ponemos en un object para usarlo cuando queramos
+
+      statistics.leastEngaged.push(sortedMembers[i]);
+    }
   }
-  tr.appendChild(td1);
-  tbody.appendChild(tr);
 }
+calcMissedVotes();
+
+/*********RENDER in a table CalcMissedVotes*********/
+var members = data.results[0].members;
+
+var tbody = document.getElementById("senate-data2");
+
+function renderLeastEngagedTable() {
+  for (var i = 0; i < statistics.leastEngaged.length; i++) {
+    var leastEngaged = statistics.leastEngaged[i];
+    var firstName = leastEngaged.first_name;
+    var middleName = leastEngaged.middle_name;
+    var lastName = leastEngaged.last_name;
+    var missedVotes = leastEngaged.missed_votes;
+    var missedVotesPct = leastEngaged.missed_votes_pct;
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+
+    if (middleName === null) {
+      td1.innerHTML = firstName + " " + lastName;
+    } else {
+      td1.innerHTML = firstName + " " + middleName + " " + lastName;
+    }
+    tr.appendChild(td1);
+
+    var tr2 = document.createElement("tr");
+    var td2 = document.createElement("td");
+    td2.innerHTML = missedVotes;
+    tr.appendChild(td2);
+
+    var tr3 = document.createElement("tr");
+    var td3 = document.createElement("td");
+    td3.innerHTML = missedVotesPct;
+    tr.appendChild(td3);
+
+    tbody.appendChild(tr);
+  }
+}
+renderLeastEngagedTable();
+
+/////////////////////////////////Least Engaged Senate////////////////////////////////
+
+//object for this function is on the top of the page//
+
+/*******Function to get Most Engaged 10% missed votes******/
+function calcMostEngaged() {
+  var sortedMembers = members.sort(function mySorter(a, b) {
+    return b.missed_votes_pct - a.missed_votes_pct;
+  });
+
+  for (var i = 0; i < sortedMembers.length; i++) {
+    var tenPercent = sortedMembers.length * 0.1;
+    if (statistics.mostEngaged.length < tenPercent) {
+      //statistics.leastEngaged = lo ponemos en un object para usarlo cuando queramos
+
+      statistics.mostEngaged.push(sortedMembers[i]);
+    }
+  }
+}
+calcMostEngaged();
+// console.log(statistics.mostEngaged);
+
+/********************Render in a table Most engaged 10%***************************/
+var tbody = document.getElementById("senate-data3");
+
+function renderMostEngagedTable() {
+  for (var i = 0; i < statistics.mostEngaged.length; i++) {
+    var mostEngaged = statistics.mostEngaged[i];
+    var firstName = mostEngaged.first_name;
+    var middleName = mostEngaged.middle_name;
+    var lastName = mostEngaged.last_name;
+    var missedVotes = mostEngaged.missed_votes;
+    var missedVotesPct = mostEngaged.missed_votes_pct;
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+
+    if (middleName === null) {
+      td1.innerHTML = firstName + " " + lastName;
+    } else {
+      td1.innerHTML = firstName + " " + middleName + " " + lastName;
+    }
+    tr.appendChild(td1);
+
+    var tr2 = document.createElement("tr");
+    var td2 = document.createElement("td");
+    td2.innerHTML = missedVotes;
+    tr.appendChild(td2);
+
+    var tr3 = document.createElement("tr");
+    var td3 = document.createElement("td");
+    td3.innerHTML = missedVotesPct;
+    tr.appendChild(td3);
+
+    tbody.appendChild(tr);
+  }
+}
+renderMostEngagedTable();
