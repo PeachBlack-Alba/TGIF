@@ -21,7 +21,8 @@ var statistics = {
   missedVotesPct: 0,
   votesWithPartypct: 0,
   votesAgainstPartyPct: 0,
-  leastEngaged: []
+  leastEngaged: [],
+  mostEngaged: []
 };
 
 /*************************************first column************************/
@@ -112,28 +113,7 @@ renderHouseAtGlance("Independents");
 
 /////////////////////////////////Least Engaged House////////////////////////////////
 
-//missed votes Object//
-// var statistics = {
-//     democrats: {
-//         count: 0,
-//         percentage: 0,
-//         party: "D"
-//     },
-//     republicans: {
-//         count: 0,
-//         percentage: 0,
-//         party: "R"
-//     },
-//     independents: {
-//         count: 0,
-//         percentage: 0,
-//         party: "D"
-//     },
-//     missedVotes: 0,
-//     missedVotesPct: 0,
-//     votesWithPartypct: 0,
-//     votesAgainstPartyPct: 0
-// };
+//object for this function is on the top of the page//
 var members = data.results[0].members;
 
 var tbody = document.getElementById("house-data2");
@@ -193,3 +173,61 @@ function renderLeastEngagedTable() {
   }
 }
 renderLeastEngagedTable();
+
+/////////////////////////////////Least Engaged House////////////////////////////////
+
+//object for this function is on the top of the page//
+
+/*******Function to get Most Engaged 10% missed votes******/
+function calcMostEngaged() {
+  var sortedMembers = members.sort(function mySorter(a, b) {
+    return b.missed_votes_pct - a.missed_votes_pct;
+  });
+
+  for (var i = 0; i < sortedMembers.length; i++) {
+    var tenPercent = sortedMembers.length * 0.1;
+    if (statistics.mostEngaged.length < tenPercent) {
+      //statistics.leastEngaged = lo ponemos en un object para usarlo cuando queramos
+
+      statistics.mostEngaged.push(sortedMembers[i]);
+    }
+  }
+}
+calcMostEngaged();
+console.log(statistics.mostEngaged);
+
+/********************Render in a table Most engaged 10%***************************/
+var tbody = document.getElementById("house-data3");
+
+function renderMostEngagedTable() {
+  for (var i = 0; i < statistics.mostEngaged.length; i++) {
+    var mostEngaged = statistics.mostEngaged[i];
+    var firstName = mostEngaged.first_name;
+    var middleName = mostEngaged.middle_name;
+    var lastName = mostEngaged.last_name;
+    var missedVotes = mostEngaged.missed_votes;
+    var missedVotesPct = mostEngaged.missed_votes_pct;
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+
+    if (middleName === null) {
+      td1.innerHTML = firstName + " " + lastName;
+    } else {
+      td1.innerHTML = firstName + " " + middleName + " " + lastName;
+    }
+    tr.appendChild(td1);
+
+    var tr2 = document.createElement("tr");
+    var td2 = document.createElement("td");
+    td2.innerHTML = missedVotes;
+    tr.appendChild(td2);
+
+    var tr3 = document.createElement("tr");
+    var td3 = document.createElement("td");
+    td3.innerHTML = missedVotesPct;
+    tr.appendChild(td3);
+
+    tbody.appendChild(tr);
+  }
+}
+renderMostEngagedTable();
