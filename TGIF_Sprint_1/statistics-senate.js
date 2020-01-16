@@ -22,7 +22,9 @@ var statistics = {
   votesWithPartypct: 0,
   votesAgainstPartyPct: 0,
   leastEngaged: [],
-  mostEngaged: []
+  mostEngaged: [],
+  leastLoyal: [],
+  mostLoyal: []
 };
 
 /*************************************first column************************/
@@ -172,9 +174,11 @@ function renderLeastEngagedTable() {
     tbody.appendChild(tr);
   }
 }
-renderLeastEngagedTable();
+if (document.title === "Senate Attendance") {
+  renderLeastEngagedTable();
+}
 
-/////////////////////////////////Least Engaged Senate////////////////////////////////
+/////////////////////////////////Most Engaged Senate////////////////////////////////
 
 //object for this function is on the top of the page//
 
@@ -230,4 +234,28 @@ function renderMostEngagedTable() {
     tbody.appendChild(tr);
   }
 }
-renderMostEngagedTable();
+if (document.title === "Senate Attendance") {
+  renderMostEngagedTable();
+}
+
+/////////////////////////////////Least Loyal Senate////////////////////////////////
+
+//object for this function is on the top of the page//
+
+/***************Function to get least loyal 10% ****************/
+// var members = data.results[0].members;
+
+// var tbody = document.getElementById("senate-data4");
+
+// function calcLeastLoyal() {
+//   var leastLoyal = [];
+//   var duplicates = [];
+//   var votesWithParty = statistics.leastLoyal.votes_with_party_pct;
+//   var  = [];
+
+//   var sortedMembers = members.sort(function mySorter(a, b) {
+//     return b.votes_against_party_pct - a.votes_against_party_pct;
+//   });
+//   var tenPercent = sortedMembers.length * 0.1;
+
+// greater or equal than 100%. Get last element and compare it to the next.

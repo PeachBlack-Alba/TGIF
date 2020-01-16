@@ -22,7 +22,9 @@ var statistics = {
   votesWithPartypct: 0,
   votesAgainstPartyPct: 0,
   leastEngaged: [],
-  mostEngaged: []
+  mostEngaged: [],
+  leastLoyal: [],
+  mostLoyal: []
 };
 
 /*************************************first column************************/
