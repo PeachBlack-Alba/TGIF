@@ -16,7 +16,11 @@ var statistics = {
     count: 0,
     percentage: 0,
     party: "D"
-  }
+    }
+  missedVotes: 0,
+    missedVotesPct: 0,
+    votesWithPartypct: 0,
+    votesAgainstPartyPct: 0
 };
 
 /*************************************first column************************/
@@ -129,17 +133,49 @@ for (var i = 0; i < members.length; i++) {
   tbody.appendChild(tr);
 }
 
-function calcMissedVotes(element) {
-  var missedVotes = [];
-  for (var i = 0; i < members.length; i++) {
-    missedVotes.push(members[i].missed_votes);
-  }
-  missedVotes.sort();
-  console.log(missedVotes);
+//missed votes//
+// var statistics = {
+//     democrats: {
+//         count: 0,
+//         percentage: 0,
+//         party: "D"
+//     },
+//     republicans: {
+//         count: 0,
+//         percentage: 0,
+//         party: "R"
+//     },
+//     independents: {
+//         count: 0,
+//         percentage: 0,
+//         party: "D"
+//     }
+//   missedVotes: 0,
+//     missedVotesPct: 0,
+//     votesWithPartypct: 0,
+//     votesAgainstPartyPct: 0
+// };
 
-  if (missedVotes[i] <= (missedVotes[i] * 10) / 100) {
-  } else if (missedVotes[i] > (missedVotes[i] * 10) / 100) {
-    display == none;
+var members = data.results[0].members;
+function calcMissedVotes() {
+  var sortedMembers = members.sort(function mySorter(a, b) {
+    return a.missed_votes_pct - b.missed_votes_pct; // Because its an object, we cant use just sort.(), it loops each member member a memberb and access the key in the object. Gets the value of the key and compares with a and b and does the order.
+  });
+  var leastEngaged = [];
+
+  for (var i = 0; i < sortedMembers.length; i++) {
+    // console.log(sortedMembers[i].missed_votes_pct);
+    var tenPercent = sortedMembers.length * 0.1;
+    if (leastEngaged.length < tenPercent) {
+    //   console.log(sortedMembers[i].missed_votes_pct);
+      leastEngaged.push(sortedMembers[i]);
+    }
   }
+  console.log("sorted members" + leastEngaged);
+
+  return leastEngaged;
 }
 calcMissedVotes();
+
+//RENDER in a table CalcMissedVotes //
+
