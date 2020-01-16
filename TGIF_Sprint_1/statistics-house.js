@@ -16,11 +16,12 @@ var statistics = {
     count: 0,
     percentage: 0,
     party: "D"
-    }
+  },
   missedVotes: 0,
-    missedVotesPct: 0,
-    votesWithPartypct: 0,
-    votesAgainstPartyPct: 0
+  missedVotesPct: 0,
+  votesWithPartypct: 0,
+  votesAgainstPartyPct: 0,
+  leastEngaged: []
 };
 
 /*************************************first column************************/
@@ -111,29 +112,7 @@ renderHouseAtGlance("Independents");
 
 /////////////////////////////////Least Engaged House////////////////////////////////
 
-var members = data.results[0].members;
-
-var tbody = document.getElementById("house-data2");
-
-/***************************************Get names****************************************/
-for (var i = 0; i < members.length; i++) {
-  var firstName = members[i].first_name;
-  var middleName = members[i].middle_name;
-  var lastName = members[i].last_name;
-
-  var tr = document.createElement("tr");
-  var td1 = document.createElement("td");
-
-  if (middleName === null) {
-    td1.innerHTML = firstName + " " + lastName;
-  } else {
-    td1.innerHTML = firstName + " " + middleName + " " + lastName;
-  }
-  tr.appendChild(td1);
-  tbody.appendChild(tr);
-}
-
-//missed votes//
+//missed votes Object//
 // var statistics = {
 //     democrats: {
 //         count: 0,
@@ -149,33 +128,68 @@ for (var i = 0; i < members.length; i++) {
 //         count: 0,
 //         percentage: 0,
 //         party: "D"
-//     }
-//   missedVotes: 0,
+//     },
+//     missedVotes: 0,
 //     missedVotesPct: 0,
 //     votesWithPartypct: 0,
 //     votesAgainstPartyPct: 0
 // };
-
 var members = data.results[0].members;
+
+var tbody = document.getElementById("house-data2");
+
+/*******Function to get Least Engaged 10% missed votes******/
+
 function calcMissedVotes() {
   var sortedMembers = members.sort(function mySorter(a, b) {
     return a.missed_votes_pct - b.missed_votes_pct; // Because its an object, we cant use just sort.(), it loops each member member a memberb and access the key in the object. Gets the value of the key and compares with a and b and does the order.
   });
-  var leastEngaged = [];
 
   for (var i = 0; i < sortedMembers.length; i++) {
-    // console.log(sortedMembers[i].missed_votes_pct);
     var tenPercent = sortedMembers.length * 0.1;
-    if (leastEngaged.length < tenPercent) {
-    //   console.log(sortedMembers[i].missed_votes_pct);
-      leastEngaged.push(sortedMembers[i]);
+    if (statistics.leastEngaged.length < tenPercent) {
+      //statistics.leastEngaged = lo ponemos en un object para usarlo cuando queramos
+
+      statistics.leastEngaged.push(sortedMembers[i]);
     }
   }
-  console.log("sorted members" + leastEngaged);
-
-  return leastEngaged;
 }
 calcMissedVotes();
 
-//RENDER in a table CalcMissedVotes //
+/*********RENDER in a table CalcMissedVotes*********/
+var members = data.results[0].members;
 
+var tbody = document.getElementById("house-data2");
+
+function renderLeastEngagedTable() {
+  for (var i = 0; i < statistics.leastEngaged.length; i++) {
+    var leastEngaged = statistics.leastEngaged[i];
+    var firstName = leastEngaged.first_name;
+    var middleName = leastEngaged.middle_name;
+    var lastName = leastEngaged.last_name;
+    var missedVotes = leastEngaged.missed_votes;
+    var missedVotesPct = leastEngaged.missed_votes_pct;
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+
+    if (middleName === null) {
+      td1.innerHTML = firstName + " " + lastName;
+    } else {
+      td1.innerHTML = firstName + " " + middleName + " " + lastName;
+    }
+    tr.appendChild(td1);
+
+    var tr2 = document.createElement("tr");
+    var td2 = document.createElement("td");
+    td2.innerHTML = missedVotes;
+    tr.appendChild(td2);
+
+    var tr3 = document.createElement("tr");
+    var td3 = document.createElement("td");
+    td3.innerHTML = missedVotesPct;
+    tr.appendChild(td3);
+
+    tbody.appendChild(tr);
+  }
+}
+renderLeastEngagedTable();
