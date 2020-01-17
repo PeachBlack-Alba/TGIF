@@ -281,7 +281,7 @@ function renderLeastLoyalTable() {
     var firstName = statistics.leastLoyal[i].first_name;
     var middleName = statistics.leastLoyal[i].middle_name;
     var lastName = statistics.leastLoyal[i].last_name;
-    var numVotes = "no lo sé";
+    var numVotes = statistics.leastLoyal[i].total_votes;
     var votesAgainstPartyPct = statistics.leastLoyal[i].votes_against_party_pct;
 
     var tr = document.createElement("tr");
@@ -350,14 +350,13 @@ calcMostLoyal(statistics.mostLoyal);
 
 var members = data.results[0].members;
 
-var tbody = document.getElementById("House-data5");
+var tbody = document.getElementById("house-data5");
 function renderMostLoyalTable() {
   for (var i = 0; i < statistics.mostLoyal.length; i++) {
-    // var mostLoyal = statistics.mostLoyal[i];
     var firstName = statistics.mostLoyal[i].first_name;
     var middleName = statistics.mostLoyal[i].middle_name;
     var lastName = statistics.mostLoyal[i].last_name;
-    var numVotes = "no lo sé";
+    var numVotes = statistics.mostLoyal[i].total_votes;
     var votesWithPartyPct = statistics.mostLoyal[i].votes_with_party_pct;
 
     var tr = document.createElement("tr");

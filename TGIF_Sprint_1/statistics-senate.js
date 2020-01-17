@@ -283,7 +283,7 @@ function renderLeastLoyalTable() {
     var firstName = statistics.leastLoyal[i].first_name;
     var middleName = statistics.leastLoyal[i].middle_name;
     var lastName = statistics.leastLoyal[i].last_name;
-    var numVotes = "no lo sé";
+    var numVotes = statistics.leastLoyal[i].total_votes;
     var votesAgainstPartyPct = statistics.leastLoyal[i].votes_against_party_pct;
 
     var tr = document.createElement("tr");
@@ -359,7 +359,7 @@ function renderMostLoyalTable() {
     var firstName = statistics.mostLoyal[i].first_name;
     var middleName = statistics.mostLoyal[i].middle_name;
     var lastName = statistics.mostLoyal[i].last_name;
-    var numVotes = "no lo sé";
+    var numVotes = statistics.mostLoyal[i].total_votes;
     var votesWithPartyPct = statistics.mostLoyal[i].votes_with_party_pct;
 
     var tr = document.createElement("tr");
