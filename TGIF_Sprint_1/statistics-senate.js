@@ -245,34 +245,146 @@ if (document.title === "Senate Attendance") {
 /***************Function to get least loyal 10% ****************/
 var members = data.results[0].members;
 
-var tbody = document.getElementById("senate-data4");
-
 function calcLeastLoyal() {
   var leastLoyal = [];
-  var duplicates = [];
-  var votesWithParty = statistics.leastLoyal.votes_with_party_pct;
 
   var sortedList = members.sort(function mySorter(a, b) {
-    return b.votes_against_party_pct - a.votes_against_party_pct;
+    return a.votes_against_party_pct - b.votes_against_party_pct;
   });
   var tenPercent = sortedList.length * 0.1;
 
   for (i = 0; i < sortedList.length; i++) {
-    if (leastLoyal.length <= tenPercent) {
-      leastLoyal.push(sortedList[i]);
+    if (statistics.leastLoyal.length <= tenPercent) {
+      statistics.leastLoyal.push(sortedList[i]);
     }
   }
 
-  var lastElement = leastLoyal[leastLoyal.length - 1];
+  var lastElement = statistics.leastLoyal[statistics.leastLoyal.length - 1];
   for (i = sortedList.indexOf(lastElement); i < sortedList.length; i++) {
     if (
       lastElement.votes_against_party_pct ==
         sortedList[i].votes_against_party_pct &&
       lastElement.id !== sortedList[i].id
     ) {
-      leastLoyal.push(sortedList[i]);
+      statistics.leastLoyal.push(sortedList[i]);
     }
   }
-  console.log(leastLoyal);
 }
-calcLeastLoyal();
+calcLeastLoyal(statistics.leastLoyal);
+
+/**********************Render table Least Loyal****************************/
+
+var members = data.results[0].members;
+
+var tbody = document.getElementById("senate-data4");
+function renderLeastLoyalTable() {
+  for (var i = 0; i < statistics.leastLoyal.length; i++) {
+    // var leastLoyal = statistics.leastLoyal[i];
+    var firstName = statistics.leastLoyal[i].first_name;
+    var middleName = statistics.leastLoyal[i].middle_name;
+    var lastName = statistics.leastLoyal[i].last_name;
+    var numVotes = "no lo sé";
+    var votesAgainstPartyPct = statistics.leastLoyal[i].votes_against_party_pct;
+
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+
+    if (middleName === null) {
+      td1.innerHTML = firstName + " " + lastName;
+    } else {
+      td1.innerHTML = firstName + " " + middleName + " " + lastName;
+    }
+    tr.appendChild(td1);
+
+    var tr2 = document.createElement("tr");
+    var td2 = document.createElement("td");
+    td2.innerHTML = numVotes;
+    tr.appendChild(td2);
+
+    var tr3 = document.createElement("tr");
+    var td3 = document.createElement("td");
+    td3.innerHTML = votesAgainstPartyPct;
+    tr.appendChild(td3);
+
+    tbody.appendChild(tr);
+  }
+}
+if (document.title === "Senate Loyalty") {
+  renderLeastLoyalTable();
+}
+
+/////////////////////////////////Most Loyal Senate////////////////////////////////
+
+//object for this function is on the top of the page//
+
+/***************Function to get Most loyal 10% ****************/
+
+var members = data.results[0].members;
+
+function calcMostLoyal() {
+  var mostLoyaloyal = [];
+
+  var sortedList = members.sort(function mySorter(a, b) {
+    return a.votes_with_party_pct - b.votes_with_party_pct;
+  });
+  var tenPercent = sortedList.length * 0.1;
+
+  for (i = 0; i < sortedList.length; i++) {
+    if (statistics.mostLoyal.length <= tenPercent) {
+      statistics.mostLoyal.push(sortedList[i]);
+    }
+  }
+
+  var lastElement = statistics.mostLoyal[statistics.mostLoyal.length - 1];
+  for (i = sortedList.indexOf(lastElement); i < sortedList.length; i++) {
+    if (
+      lastElement.votes_with_party_pct == sortedList[i].votes_with_party_pct &&
+      lastElement.id !== sortedList[i].id
+    ) {
+      statistics.mostLoyal.push(sortedList[i]);
+    }
+  }
+}
+console.log(statistics.mostLoyal);
+calcMostLoyal(statistics.mostLoyal);
+
+/**********************Render table Most Loyal****************************/
+
+var members = data.results[0].members;
+
+var tbody = document.getElementById("senate-data5");
+function renderMostLoyalTable() {
+  for (var i = 0; i < statistics.mostLoyal.length; i++) {
+    // var mostLoyal = statistics.mostLoyal[i];
+    var firstName = statistics.mostLoyal[i].first_name;
+    var middleName = statistics.mostLoyal[i].middle_name;
+    var lastName = statistics.mostLoyal[i].last_name;
+    var numVotes = "no lo sé";
+    var votesWithPartyPct = statistics.mostLoyal[i].votes_with_party_pct;
+
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
+
+    if (middleName === null) {
+      td1.innerHTML = firstName + " " + lastName;
+    } else {
+      td1.innerHTML = firstName + " " + middleName + " " + lastName;
+    }
+    tr.appendChild(td1);
+
+    var tr2 = document.createElement("tr");
+    var td2 = document.createElement("td");
+    td2.innerHTML = numVotes;
+    tr.appendChild(td2);
+
+    var tr3 = document.createElement("tr");
+    var td3 = document.createElement("td");
+    td3.innerHTML = votesWithPartyPct;
+    tr.appendChild(td3);
+
+    tbody.appendChild(tr);
+  }
+}
+if (document.title === "Senate Loyalty") {
+  renderMostLoyalTable();
+}
