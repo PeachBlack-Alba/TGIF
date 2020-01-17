@@ -268,7 +268,7 @@ function calcLeastLoyal() {
     if (
       lastElement.votes_against_party_pct ==
         sortedList[i].votes_against_party_pct &&
-      lastElement.first_name !== sortedList.first_name
+      lastElement.id !== sortedList[i].id
     ) {
       leastLoyal.push(sortedList[i]);
     }
