@@ -243,19 +243,36 @@ if (document.title === "Senate Attendance") {
 //object for this function is on the top of the page//
 
 /***************Function to get least loyal 10% ****************/
-// var members = data.results[0].members;
+var members = data.results[0].members;
 
-// var tbody = document.getElementById("senate-data4");
+var tbody = document.getElementById("senate-data4");
 
-// function calcLeastLoyal() {
-//   var leastLoyal = [];
-//   var duplicates = [];
-//   var votesWithParty = statistics.leastLoyal.votes_with_party_pct;
-//   var  = [];
+function calcLeastLoyal() {
+  var leastLoyal = [];
+  var duplicates = [];
+  var votesWithParty = statistics.leastLoyal.votes_with_party_pct;
 
-//   var sortedMembers = members.sort(function mySorter(a, b) {
-//     return b.votes_against_party_pct - a.votes_against_party_pct;
-//   });
-//   var tenPercent = sortedMembers.length * 0.1;
+  var sortedList = members.sort(function mySorter(a, b) {
+    return b.votes_against_party_pct - a.votes_against_party_pct;
+  });
+  var tenPercent = sortedList.length * 0.1;
 
-// greater or equal than 100%. Get last element and compare it to the next.
+  for (i = 0; i < sortedList.length; i++) {
+    if (leastLoyal.length <= tenPercent) {
+      leastLoyal.push(sortedList[i]);
+    }
+  }
+
+  var lastElement = leastLoyal[leastLoyal.length - 1];
+  for (i = sortedList.indexOf(lastElement); i < sortedList.length; i++) {
+    if (
+      lastElement.votes_against_party_pct ==
+        sortedList[i].votes_against_party_pct &&
+      lastElement.first_name !== sortedList.first_name
+    ) {
+      leastLoyal.push(sortedList[i]);
+    }
+  }
+  console.log(leastLoyal);
+}
+calcLeastLoyal();
