@@ -43,3 +43,91 @@ for (var i = 0; i < members.length; i++) {
 
   tbody.appendChild(tr);
 }
+
+/*****************************************************CheckBoxes**********************************/
+
+var members = data.results[0].members;
+
+var statistics = {
+  democrats: {
+    count: 0,
+    percentage: 0,
+    party: "D"
+  },
+  republicans: {
+    count: 0,
+    percentage: 0,
+    party: "R"
+  },
+  independents: {
+    count: 0,
+    percentage: 0,
+    party: "D"
+  }
+};
+
+//Republican//
+
+var partyR = document.getElementById("republican");
+var showMembersR = [];
+
+partyR.addEventListener("click", function(e) {
+  if (e.partyR.checked) {
+    function checkMembers() {
+      for (var i = 0; i < members.length; i++) {
+        var party = members[i].party;
+
+        if (party === "D" && party === "I") {
+          display = "none";
+        } else {
+          showMembersR.push(members[i]);
+        }
+      }
+    }
+  }
+  checkMembers();
+});
+
+//Democrat//
+
+var partyD = document.getElementById("democrat");
+var showMembersD = [];
+
+partyD.addEventListener("click", function(e) {
+  if (e.partyD.checked) {
+    function checkMembers() {
+      for (var i = 0; i < members.length; i++) {
+        var party = members[i].party;
+
+        if (party === "R" && party === "I") {
+          display = "none";
+        } else {
+          showMembersD.push(members[i]);
+        }
+      }
+    }
+  }
+  checkMembers();
+});
+
+//Inpendendent//
+
+var partyI = document.getElementById("independent");
+var showMembersI = [];
+
+partyI.addEventListener("click", function(e) {
+  if (e.partyI.checked) {
+    function checkMembers() {
+      for (var i = 0; i < members.length; i++) {
+        var party = members[i].party;
+
+        if (party === "R" && party === "D") {
+          display = "none";
+        } else {
+          showMembersI.push(members[i]);
+        }
+      }
+    }
+  }
+  checkMembers();
+});

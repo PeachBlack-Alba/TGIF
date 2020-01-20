@@ -103,18 +103,24 @@
         </p>
 
         <!-- FORM  -->
-        <form class="filter">
+
+        <!-- <div class="">
+          <div><input type="checkbox" name="startingReserves" value="starting" id="starting"><label
+              for="starting">Starting</label></div>
+          <div><input type="checkbox" name="startingReserves" value="reserves" id="reserves"><label
+              for="reserves">Reserves</label></div> -->
+        <form class="filterByParty">
           <label for="">Filter by Party:</label>
-          <input id="zimmer4" checked type="checkbox">Republican
+          <input id="republican"  type="checkbox">Republican
           
-          <input id="zimmer3" checked type="checkbox">Democrat
+          <input id="democrat"  type="checkbox">Democrat
           
-          <input id="zimmer2" checked type="checkbox">Independent
+          <input id="independent"  type="checkbox">Independent
 
        
 
         <div>
-          <label for="">Filter by State</label>
+          <label for="filterByState">Filter by State</label>
           <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">All
            </button>
@@ -186,5 +192,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+        <script src="checkboxes.js"></script>
   </body>
 </html>

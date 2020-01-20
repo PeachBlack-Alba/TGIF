@@ -46,7 +46,7 @@ body {
 
 /************************Filters***************************/
 
-.filter {
+.filterByParty {
   display: flex;
   justify-content: space-around;
 }
