@@ -43,3 +43,49 @@ for (var i = 0; i < members.length; i++) {
 
   tbody.appendChild(tr);
 }
+
+//Republican//
+
+var partyR = document.getElementById("republican");
+var showMembersR = [];
+partyR.addEventListener("click", function(e) {
+  checkCheckBoxes();
+});
+
+//Democrat//
+
+var partyD = document.getElementById("democrat");
+var showMembersD = [];
+
+partyD.addEventListener("click", function(e) {
+  checkCheckBoxes();
+});
+
+//Inpendendent//
+
+var partyI = document.getElementById("independent");
+var showMembersI = [];
+
+partyI.addEventListener("click", function(e) {
+  checkCheckBoxes();
+});
+
+function checkCheckBoxes() {
+  console.log("hi");
+
+  /*   var partyR = document.getElementById("republican");
+  var partyD = document.getElementById("democrat");
+  var partyI = document.getElementById("independent"); */
+
+  var checkboxes = Array.from(
+    document.querySelectorAll("input[name=checkboxes]:checked")
+  );
+  var checkboxesValue = [];
+  for (i = 0; i < checkboxes.length; i++) {
+    checkboxesValue.push(checkboxes[i].value);
+  }
+  console.log(checkboxesValue);
+  for (i = 0; i < members.length; i++){
+    if(checkboxesValue === "D")
+  }
+}
