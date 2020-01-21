@@ -87,7 +87,7 @@ function checkCheckBoxes() {
   );
   var checkboxesValue = [];
   for (i = 0; i < checkboxes.length; i++) {
-    checkboxesValue.push(checkboxes[i].value); //.map(elt => elt.value)
+    checkboxesValue.push(checkboxes[i].value); //push value in to an empty array
   }
 
   var filteredMembers = [];
