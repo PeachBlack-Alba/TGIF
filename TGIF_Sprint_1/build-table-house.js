@@ -97,13 +97,6 @@ function checkCheckBoxes() {
     partyR.checked == false
   ) {
     document.getElementById("alert").style.display = "block";
-    if (
-      partyI.checked == true ||
-      partyD.checked == true ||
-      partyR.checked == true
-    ) {
-      document.getElementById("alert").style.display = "none"; // if any checkboxes is checked, don't show alert
-    }
   }
   for (i = 0; i < members.length; i++) {
     if (partyI.checked == true && members[i].party == "I") {
@@ -115,6 +108,13 @@ function checkCheckBoxes() {
     if (partyR.checked == true && members[i].party == "R") {
       filteredMembers.push(members[i]);
     }
+  }
+  if (
+    partyI.checked == true ||
+    partyD.checked == true ||
+    partyR.checked == true
+  ) {
+    document.getElementById("alert").style.display = "none"; // if any checkboxes is checked, don't show alert
   }
 
   allTable(filteredMembers); // call the function with the general table to print it with the filtered memebers
