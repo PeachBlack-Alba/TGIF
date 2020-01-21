@@ -122,3 +122,30 @@ function checkCheckBoxes() {
 checkCheckBoxes();
 
 //////////////////////////////DropDown Filter by State/////////////////////////////////////////////////
+
+function showDropDown(member) {
+  var options = document.getElementById("dropDownBody").value;
+  if (options === member.state || options === "All") {
+    return true;
+  }
+}
+
+document.getElementById("dropDownList").addEventListener("change", allTable);
+
+function createStates() {
+  var filteredStates = [];
+  for (i = 0; i < members.length; i++) {
+    if (filteredStates.indexOf(members[i].state) == -1) {
+      filteredStates.push(members[i].state);
+      filteredStates.sort();
+    }
+  }
+  for (var a = 0; a < filteredStates.length; a++) {
+    var option = document.createElement("option");
+    option.classList.add("stateOptions");
+    option.setAttribute("value", filteredStates[a]);
+    option.innerHTML = filteredStates[a];
+    var dropDownOptions = document.getElementById("dropDownList");
+    dropDownOptions.appendChild(option);
+  }
+}
