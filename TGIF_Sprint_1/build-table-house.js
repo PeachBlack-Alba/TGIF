@@ -120,3 +120,5 @@ function checkCheckBoxes() {
   allTable(filteredMembers); // call the function with the general table to print it with the filtered memebers
 }
 checkCheckBoxes();
+
+//////////////////////////////DropDown Filter by State/////////////////////////////////////////////////

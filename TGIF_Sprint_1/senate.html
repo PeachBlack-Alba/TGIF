@@ -136,13 +136,31 @@
         </p>
 
         <!-- FORM  -->
-        <form class="filter">
+        <form class="filterByParty">
           <label for="">Filter by Party:</label>
-          <input id="zimmer4" checked type="checkbox" />Republican
+          <input
+            id="republican"
+            type="checkbox"
+            value="R"
+            name="checkboxes"
+            checked
+          />Republican
 
-          <input id="zimmer3" checked type="checkbox" />Democrat
+          <input
+            id="democrat"
+            type="checkbox"
+            value="D"
+            name="checkboxes"
+            checked
+          />Democrat
 
-          <input id="zimmer2" checked type="checkbox" />Independent
+          <input
+            id="independent"
+            type="checkbox"
+            value="I"
+            name="checkboxes"
+            checked
+          />Independent
 
           <div>
             <label for="">Filter by State</label>
@@ -205,12 +223,11 @@
               <td>657</td>
             </tr> -->
           </tbody>
+          <p id="alert">Please select a checkbox!</p>
         </table>
 
         <script src="./pro-Congress-113-senate.js"></script>
         <script src="build-table.js"></script>
-
-        <button onclick="myFunction()" id="myBtn">Read more</button>
       </div>
     </section>
 
@@ -219,7 +236,7 @@
         © 2016 TGIF All Rights Reserved
       </div>
     </footer>
-    Optional JavaScript jQuery first, then Popper.js, then Bootstrap JS
+
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
