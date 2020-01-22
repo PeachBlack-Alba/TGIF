@@ -119,3 +119,55 @@ function checkCheckBoxes() {
 }
 checkCheckBoxes();
 //////////////////////////////DropDown Filter by State/////////////////////////////////////////////////
+
+///Función para crear el dropdown y filtrar los repetidos////////
+var filteredStates = []; // creamos un empty array
+function createStates() {
+  // making array of states and dropdown
+  filteredStates.push("AALL"); // put all first outside the loop so it doesn't appear everytime
+  for (i = 0; i < members.length; i++) {
+    // make a loop through the members
+    if (filteredStates.indexOf(members[i].state) == -1) {
+      // Si hay repetidos no incluir
+      filteredStates.push(members[i].state); // push the full member no repetidos en el nuevo array
+      filteredStates.sort(); // los ordenamos (por eso "all") esta duera del loop
+    }
+  }
+
+  for (var a = 0; a < filteredStates.length; a++) {
+    // hacemos loop en los estados que hemos filtrado y creamos una lista de opciones
+    var option = document.createElement("option");
+    option.classList.add("stateOptions"); //lista opciones
+    option.setAttribute("value", filteredStates[a]); // atribuimos un valor a los estados filtrados
+    option.innerHTML = filteredStates[a]; // ese valor que hemos atribuido será el qué aparecerá en pantalla (AL, ILL...)
+    var dropDownOptions = document.getElementById("dropDownBody"); // creamos una variable para posicionar los valores que acabamos de crear, para que aparezcan dentro de la lista
+    dropDownOptions.appendChild(option); // posicionamiento
+  }
+  console.log(filteredStates);
+}
+createStates();
+
+//// función para crear filteredmembersbystate////
+
+var selectedState = document.getElementById("dropDownBody");
+selectedState.addEventListener("change", function() {
+  checkCheckStates(selectedState.value); // creamos un addevent listener porque queremos que cada vez que elijamos un estado, ocurra una acción
+});
+function checkCheckStates(stateValue) {
+  // creamos una función para añadir la información de los miembros al selected state, de esa forma, aparecerá toda la información
+  var checkStates = document.getElementById("");
+
+  var filteredMembersByState = []; // creamos empty array
+
+  for (i = 0; i < members.length; i++) {
+    // loop todos los miembros
+    if (stateValue == members[i].state) {
+      filteredMembersByState.push(members[i]); // añadimos toda la información del miembro en cuestión al nuevo array que hemos creado
+    }
+  }
+  allTable(filteredMembersByState); // mostramos la tabla con la información de filteredMembersByState
+}
+
+checkCheckStates();
+
+////Función para que aparezca la información de checkboxes y dropdown //////
