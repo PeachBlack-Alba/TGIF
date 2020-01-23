@@ -24,7 +24,7 @@ function getDataHouse() {
       console.log(error);
     });
 }
-getDataHOuse();
+getDataHouse();
 
 //document.tittle.includes()
 
