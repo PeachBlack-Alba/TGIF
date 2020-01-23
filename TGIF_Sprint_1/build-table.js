@@ -1,3 +1,30 @@
+///////////////Fetch function////////////
+var members = data.results[0].members;
+//API key-y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o
+var members;
+var url = "https://api.propublica.org/congress/v1/113/senate/members.json";
+fetch(url, {
+  headers: {
+    "X-API-Key": "y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o"
+  }
+})
+  .then(function(resp) {
+    return resp.json();
+  })
+  .then(function(data) {
+    console.log(data);
+    members = data.results[0].members;
+    allTable(members);
+    checkCheckBoxes();
+    createStates();
+    checkCheckStates();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//////////////General Table///////////////////////
+
 var members = data.results[0].members;
 
 var tbody = document.getElementById("senate-data");
