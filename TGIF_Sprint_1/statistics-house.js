@@ -2,7 +2,7 @@
 var members = data.results[0].members;
 //API key-y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o
 var members;
-var url = "https://api.propublica.org/congress/v1/113/senate/members.json";
+var url = "https://api.propublica.org/congress/v1/113/house/members.json";
 $("#spinner").show();
 
 function getDataStatisticsHouse() {
