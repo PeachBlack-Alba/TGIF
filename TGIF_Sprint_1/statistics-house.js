@@ -33,6 +33,7 @@ function getDataStatisticsHouse() {
       console.log(error);
     });
 }
+getDataStatisticsHouse();
 /////////////////////////////////HOUSE at a Glance TABLE///////////////////////////////////////
 
 /*********************************object*****************************************************/

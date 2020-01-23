@@ -33,6 +33,7 @@ function getDataStatisticsSenate() {
       console.log(error);
     });
 }
+getDataStatisticsSenate();
 
 /////////////////////////////////Senate at a Glance TABLE///////////////////////////////////////
 
