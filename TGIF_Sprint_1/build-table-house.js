@@ -3,7 +3,9 @@ var members = data.results[0].members;
 //API key-y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o
 var members;
 var url = "https://api.propublica.org/congress/v1/113/house/members.json";
+$("#spinner").show();
 function getDataHouse() {
+  $("#spinner").hide();
   fetch(url, {
     headers: {
       "X-API-Key": "y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o"
