@@ -3,9 +3,9 @@ var members = data.results[0].members;
 //API key-y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o
 var members;
 var url = "https://api.propublica.org/congress/v1/113/house/members.json";
-$("#spinner").show();
+// $("#spinner").show();
 function getDataHouse() {
-  $("#spinner").hide();
+  // $("#spinner").hide();
   fetch(url, {
     headers: {
       "X-API-Key": "y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o"
@@ -29,6 +29,13 @@ function getDataHouse() {
 getDataHouse();
 
 //document.tittle.includes()
+
+/////////////////////////////Loader///////////////////////
+
+window.addEventListener("load", function() {
+  const loader = document.querySelector(".loader");
+  loader.className += " hidden";
+});
 
 ////////////////////////////ALL TABLE//////////////////
 var members = data.results[0].members;
@@ -148,10 +155,10 @@ function checkCheckBoxes() {
   ) {
     document.getElementById("alert").style.display = "none"; // if any checkboxes is checked, don't show alert
   }
-
+  return filteredMembers;
   allTable(filteredMembers); // call the function with the general table to print it with the filtered memebers
 }
-checkCheckBoxes();
+// checkCheckBoxes();
 
 //////////////////////////////DropDown Filter by State/////////////////////////////////////////////////
 
@@ -159,7 +166,7 @@ checkCheckBoxes();
 var filteredStates = []; // creamos un empty array
 function createStates() {
   // making array of states and dropdown
-  filteredStates.push("AALL"); // put all first outside the loop so it doesn't appear everytime
+
   for (i = 0; i < members.length; i++) {
     // make a loop through the members
     if (filteredStates.indexOf(members[i].state) == -1) {
@@ -193,7 +200,11 @@ function checkCheckStates(stateValue) {
   var checkStates = document.getElementById("");
 
   var filteredMembersByState = []; // creamos empty array
-
+  if (selectedState.value === "") {
+    for (i = 0; i < members.length; i++) {
+      filteredMembersByState.push(members[i]);
+    }
+  }
   for (i = 0; i < members.length; i++) {
     // loop todos los miembros
     if (stateValue == members[i].state) {
@@ -205,6 +216,30 @@ function checkCheckStates(stateValue) {
   allTable(filteredMembersByState); // mostramos la tabla con la información de filteredMembersByState
 }
 
-checkCheckStates();
+// checkCheckStates();
 
 ////Función para que aparezca la información de checkboxes y dropdown ///////
+
+function partyAndState(object) {
+  var selectedParties = document.querySelectorAll(
+    "input[name=checkboxes]:checked"
+  );
+
+  var selectedStates = document.getElementById("dropDownBody").value;
+  var membersToShow = [];
+  let membersFilteredByParty = checkCheckBoxes();
+  if (selectedParties === "" && selectedStates === "") {
+    for (i = 0; i < members.length; i++) {
+      membersToShow.push(members[i]);
+    }
+    allTable(membersToShow);
+  }
+  if (selectedParties != "" && selectedStates === "") {
+    allTable(membersFilteredByParty);
+  }
+  if (selectedParties === "" && selectedStates != "") {
+    allTable(selectedStates);
+  }
+  if (selectedParties != "" && selectedStates != "") {
+  }
+}

@@ -54,22 +54,22 @@ function allTable(members) {
     }
     tr.appendChild(td1);
 
-    var tr2 = document.createElement("tr");
+    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = party;
     tr.appendChild(td2);
 
-    var tr3 = document.createElement("tr");
+    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = state;
     tr.appendChild(td3);
 
-    var tr4 = document.createElement("tr");
+    // var tr4 = document.createElement("tr");
     var td4 = document.createElement("td");
     td4.innerHTML = yearsOffice;
     tr.appendChild(td4);
 
-    var tr5 = document.createElement("tr");
+    // var tr5 = document.createElement("tr");
     var td5 = document.createElement("td");
     td5.innerHTML = votesparty;
     tr.appendChild(td5);
@@ -156,7 +156,7 @@ checkCheckBoxes();
 var filteredStates = []; // creamos un empty array
 function createStates() {
   // making array of states and dropdown
-  filteredStates.push("AALL"); // put all first outside the loop so it doesn't appear everytime
+
   for (i = 0; i < members.length; i++) {
     // make a loop through the members
     if (filteredStates.indexOf(members[i].state) == -1) {

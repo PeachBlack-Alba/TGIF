@@ -111,18 +111,18 @@
               for="reserves">Reserves</label></div> -->
         <form class="filterByParty">
           <label for="">Filter by Party:</label>
-          <input id="republican"  type="checkbox" value="R" name="checkboxes" checked>Republican
+          <input id="republican"  type="checkbox" value="R" name="checkboxes" >Republican
           
-          <input id="democrat"  type="checkbox" value="D" name="checkboxes"checked>Democrat
+          <input id="democrat"  type="checkbox" value="D" name="checkboxes">Democrat
           
-          <input id="independent"  type="checkbox" value="I" name="checkboxes"checked>Independent
+          <input id="independent"  type="checkbox" value="I" name="checkboxes">Independent
 
        
 
         <div class="dropdownButton">
           <label for="dropDownList">Filter by State
             <select class="dropdown" id="dropDownBody" name="states">
-              <option value="" id="" ></option>
+              <option value="" id="" >ALL</option>
             </select>
           </label>
         </div>
@@ -171,8 +171,8 @@
       </table>
 
 
-      <div id="spinner" style= "display:none;">
-        <img id= "img-spinner"src="ajax-loader.gif" alt="loading">
+      <div class="loader">
+        <img src="./ajax-loader.gif" id= "img-spinner"alt="loading">
 
       </div>
      

@@ -60,10 +60,26 @@ body {
 
 /*******************************Spinner*********************/
 
-#spinner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
+.loader {
+  z-index: 99;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.loader .hidden {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 /**************************Read More*************************/
 

@@ -114,7 +114,7 @@ function calculateTotalPercentageVotes() {
       totalI = totalI + membersInd;
     }
   }
-  console.log(totalD);
+  // console.log(totalD);
 
   statistics.republicans.percentage = totalR / statistics.republicans.count;
   statistics.democrats.percentage = totalD / statistics.democrats.count;
@@ -200,12 +200,12 @@ function renderLeastEngagedTable() {
     }
     tr.appendChild(td1);
 
-    var tr2 = document.createElement("tr");
+    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = missedVotes;
     tr.appendChild(td2);
 
-    var tr3 = document.createElement("tr");
+    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = missedVotesPct;
     tr.appendChild(td3);
@@ -236,7 +236,7 @@ function calcMostEngaged() {
   }
 }
 calcMostEngaged();
-console.log(statistics.mostEngaged);
+// console.log(statistics.mostEngaged);
 
 /********************Render in a table Most engaged 10%***************************/
 var tbody = document.getElementById("house-data3");
@@ -259,12 +259,12 @@ function renderMostEngagedTable() {
     }
     tr.appendChild(td1);
 
-    var tr2 = document.createElement("tr");
+    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = missedVotes;
     tr.appendChild(td2);
 
-    var tr3 = document.createElement("tr");
+    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = missedVotesPct;
     tr.appendChild(td3);
@@ -284,7 +284,7 @@ if (document.title === "House attendance") {
 var members = data.results[0].members;
 
 function calcLeastLoyal() {
-  var leastLoyal = [];
+  // var leastLoyal = [];
 
   var sortedList = members.sort(function mySorter(a, b) {
     return a.votes_against_party_pct - b.votes_against_party_pct;
@@ -298,7 +298,10 @@ function calcLeastLoyal() {
   }
 
   var lastElement = statistics.leastLoyal[statistics.leastLoyal.length - 1];
-  for (i = sortedList.indexOf(lastElement); i < sortedList.length; i++) {
+
+  for (i = tenPercent; i < sortedList.length; i++) {
+    console.log(i);
+    console.log(sortedList.length);
     if (
       lastElement.votes_against_party_pct ==
         sortedList[i].votes_against_party_pct &&
@@ -333,12 +336,12 @@ function renderLeastLoyalTable() {
     }
     tr.appendChild(td1);
 
-    var tr2 = document.createElement("tr");
+    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = numVotes;
     tr.appendChild(td2);
 
-    var tr3 = document.createElement("tr");
+    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = votesAgainstPartyPct;
     tr.appendChild(td3);
@@ -359,8 +362,6 @@ if (document.title === "House Loyalty") {
 var members = data.results[0].members;
 
 function calcMostLoyal() {
-  var mostLoyaloyal = [];
-
   var sortedList = members.sort(function mySorter(a, b) {
     return a.votes_with_party_pct - b.votes_with_party_pct;
   });
@@ -373,7 +374,7 @@ function calcMostLoyal() {
   }
 
   var lastElement = statistics.mostLoyal[statistics.mostLoyal.length - 1];
-  for (i = sortedList.indexOf(lastElement); i < sortedList.length; i++) {
+  for (i = tenPercent; i < sortedList.length; i++) {
     if (
       lastElement.votes_with_party_pct == sortedList[i].votes_with_party_pct &&
       lastElement.id !== sortedList[i].id
@@ -382,7 +383,7 @@ function calcMostLoyal() {
     }
   }
 }
-console.log(statistics.mostLoyal);
+// console.log(statistics.mostLoyal);
 calcMostLoyal(statistics.mostLoyal);
 
 /**********************Render table Most Loyal****************************/
@@ -408,12 +409,12 @@ function renderMostLoyalTable() {
     }
     tr.appendChild(td1);
 
-    var tr2 = document.createElement("tr");
+    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = numVotes;
     tr.appendChild(td2);
 
-    var tr3 = document.createElement("tr");
+    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = votesWithPartyPct;
     tr.appendChild(td3);
