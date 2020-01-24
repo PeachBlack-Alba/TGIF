@@ -18,9 +18,9 @@ function getDataHouse() {
       console.log(data);
       members = data.results[0].members;
       allTable(members);
-      checkCheckBoxes();
-      createStates();
-      checkCheckStates();
+      // checkCheckBoxes();
+      // createStates();
+      // checkCheckStates();
     })
     .catch(function(error) {
       console.log(error);
@@ -94,7 +94,8 @@ document.write(allTable(members));
 var partyR = document.getElementById("republican");
 
 partyR.addEventListener("click", function(e) {
-  checkCheckBoxes();
+  // checkCheckBoxes();
+  partyAndState();
 });
 
 //Democrat//
@@ -102,7 +103,8 @@ partyR.addEventListener("click", function(e) {
 var partyD = document.getElementById("democrat");
 
 partyD.addEventListener("click", function(e) {
-  checkCheckBoxes();
+  // checkCheckBoxes();
+  partyAndState();
 });
 
 //Inpendendent//
@@ -113,7 +115,8 @@ var alert = document.getElementById("alert");
 console.log(partyI.checked);
 
 partyI.addEventListener("click", function(e) {
-  checkCheckBoxes();
+  // checkCheckBoxes();
+  partyAndState();
 });
 //////////////////////////Function checkcheckboxes/////////////////
 function checkCheckBoxes() {
@@ -189,7 +192,7 @@ function createStates() {
 }
 createStates();
 
-//// función para crear filteredmembersbystate////
+///////////////////////////////// función para crear filteredmembersbystate//////////////////////////
 
 var selectedState = document.getElementById("dropDownBody");
 selectedState.addEventListener("change", function() {
@@ -228,6 +231,7 @@ function partyAndState(object) {
   var selectedStates = document.getElementById("dropDownBody").value;
   var membersToShow = [];
   let membersFilteredByParty = checkCheckBoxes();
+  let membersFilteredByStates = checkCheckStates(selectedStates);
   if (selectedParties === "" && selectedStates === "") {
     for (i = 0; i < members.length; i++) {
       membersToShow.push(members[i]);
@@ -236,10 +240,18 @@ function partyAndState(object) {
   }
   if (selectedParties != "" && selectedStates === "") {
     allTable(membersFilteredByParty);
+    console.log(membersFilteredByParty);
   }
   if (selectedParties === "" && selectedStates != "") {
-    allTable(selectedStates);
-  }
-  if (selectedParties != "" && selectedStates != "") {
+    allTable(membersFilteredByStates);
+    console.log(membersFilteredByStates);
+  } else {
+    var membersFilteredByPartyAndStates = membersFilteredByParty.concat(
+      membersFilteredByStates
+    );
+
+    console.log("pands" + membersFilteredByPartyAndStates);
+    allTable(membersFilteredByPartyAndStates);
   }
 }
+// partyAndState();

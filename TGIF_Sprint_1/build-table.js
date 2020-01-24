@@ -3,10 +3,8 @@ var members = data.results[0].members;
 //API key-y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o
 var members;
 var url = "https://api.propublica.org/congress/v1/113/senate/members.json";
-$("#spinner").show();
 
 function getDataSenate() {
-  $("#spinner").hide();
   fetch(url, {
     headers: {
       "X-API-Key": "y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o"
@@ -85,7 +83,7 @@ document.write(allTable(members));
 var partyR = document.getElementById("republican");
 
 partyR.addEventListener("click", function(e) {
-  checkCheckBoxes();
+  partyAndState();
 });
 
 //Democrat//
@@ -93,7 +91,7 @@ partyR.addEventListener("click", function(e) {
 var partyD = document.getElementById("democrat");
 
 partyD.addEventListener("click", function(e) {
-  checkCheckBoxes();
+  partyAndState();
 });
 
 //Inpendendent//
@@ -104,7 +102,7 @@ var alert = document.getElementById("alert");
 console.log(partyI.checked);
 
 partyI.addEventListener("click", function(e) {
-  checkCheckBoxes();
+  partyAndState();
 });
 //////////////////////////Function checkcheckboxes/////////////////
 function checkCheckBoxes() {
@@ -117,7 +115,7 @@ function checkCheckBoxes() {
   );
   var checkboxesValue = [];
   for (i = 0; i < checkboxes.length; i++) {
-    checkboxesValue.push(checkboxes[i].value); //.map(elt => elt.value)
+    checkboxesValue.push(checkboxes[i].value); //push value in to an empty array
   }
 
   var filteredMembers = [];
@@ -146,10 +144,11 @@ function checkCheckBoxes() {
   ) {
     document.getElementById("alert").style.display = "none"; // if any checkboxes is checked, don't show alert
   }
-
+  return filteredMembers;
   allTable(filteredMembers); // call the function with the general table to print it with the filtered memebers
 }
-checkCheckBoxes();
+// checkCheckBoxes();
+
 //////////////////////////////DropDown Filter by State/////////////////////////////////////////////////
 
 ///Función para crear el dropdown y filtrar los repetidos////////
@@ -179,7 +178,7 @@ function createStates() {
 }
 createStates();
 
-//// función para crear filteredmembersbystate////
+///////////////////////////////// función para crear filteredmembersbystate//////////////////////////
 
 var selectedState = document.getElementById("dropDownBody");
 selectedState.addEventListener("change", function() {
@@ -190,16 +189,55 @@ function checkCheckStates(stateValue) {
   var checkStates = document.getElementById("");
 
   var filteredMembersByState = []; // creamos empty array
-
+  if (selectedState.value === "") {
+    for (i = 0; i < members.length; i++) {
+      filteredMembersByState.push(members[i]);
+    }
+  }
   for (i = 0; i < members.length; i++) {
     // loop todos los miembros
     if (stateValue == members[i].state) {
       filteredMembersByState.push(members[i]); // añadimos toda la información del miembro en cuestión al nuevo array que hemos creado
     }
+    // if (stateValue == "AALL") {
+    //   display = "block";
   }
   allTable(filteredMembersByState); // mostramos la tabla con la información de filteredMembersByState
 }
 
-checkCheckStates();
+// checkCheckStates();
 
-////Función para que aparezca la información de checkboxes y dropdown //////
+////Función para que aparezca la información de checkboxes y dropdown ///////
+
+function partyAndState(object) {
+  var selectedParties = document.querySelectorAll(
+    "input[name=checkboxes]:checked"
+  );
+
+  var selectedStates = document.getElementById("dropDownBody").value;
+  var membersToShow = [];
+  let membersFilteredByParty = checkCheckBoxes();
+  let membersFilteredByStates = checkCheckStates(selectedStates);
+  if (selectedParties === "" && selectedStates === "") {
+    for (i = 0; i < members.length; i++) {
+      membersToShow.push(members[i]);
+    }
+    allTable(membersToShow);
+  }
+  if (selectedParties != "" && selectedStates === "") {
+    allTable(membersFilteredByParty);
+    console.log(membersFilteredByParty);
+  }
+  if (selectedParties === "" && selectedStates != "") {
+    allTable(membersFilteredByStates);
+    console.log(membersFilteredByStates);
+  } else {
+    var membersFilteredByPartyAndStates = membersFilteredByParty.concat(
+      membersFilteredByStates
+    );
+
+    console.log("pands" + membersFilteredByPartyAndStates);
+    allTable(membersFilteredByPartyAndStates);
+  }
+}
+// partyAndState();
