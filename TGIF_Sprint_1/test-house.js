@@ -21,7 +21,7 @@ function getDataHouse() {
         allTable(members);
         // checkCheckBoxes();
         createStates();
-        //checkCheckStates();
+
         CheckBoxesEventListeners();
         dropdownEventListener();
       }
@@ -239,7 +239,7 @@ function checkCheckStates(stateValue, members) {
 
 ////Función para que aparezca la información de checkboxes y dropdown ///////
 
-function partyAndState(object) {
+function partyAndState() {
   var selectedParties = Array.from(
     document.querySelectorAll("input[name=checkboxes]:checked")
   );
@@ -258,10 +258,6 @@ function partyAndState(object) {
   } else if (selectedParties.length === 0 && selectedStates != "") {
     let membersFilteredByStates = checkCheckStates(selectedStates, members);
     membersFilteredByStates;
-  } else if (selectedParties.length === 0 && selectedStates === "") {
-    {
-      membersToShow;
-    }
   } else {
     let test = checkCheckBoxes();
 

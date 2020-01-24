@@ -32,10 +32,6 @@ function getDataSenate() {
         renderSenateAtGlance("Democrats");
         renderSenateAtGlance("Republicans");
         renderSenateAtGlance("Independents");
-        calcMissedVotes();
-        renderLeastEngagedTable();
-        calcMostEngaged();
-        renderMostEngagedTable();
         calcLeastLoyal();
         renderLeastLoyalTable();
         calcMostLoyal();
@@ -53,10 +49,6 @@ function getDataSenate() {
         renderLeastEngagedTable();
         calcMostEngaged();
         renderMostEngagedTable();
-        calcLeastLoyal();
-        renderLeastLoyalTable();
-        calcMostLoyal();
-        renderMostLoyalTable();
       }
     })
     .catch(function(error) {
