@@ -40,8 +40,8 @@ window.addEventListener("load", function() {
 ////////////////////////////ALL TABLE//////////////////
 var members = data.results[0].members;
 
-var tbody = document.getElementById("house-data");
 function allTable(members) {
+  var tbody = document.getElementById("house-data");
   tbody.innerHTML = ""; //we clear the table so it doesn't print first members and then filtered members
   for (var i = 0; i < members.length; i++) {
     var firstName = members[i].first_name;
@@ -196,7 +196,7 @@ createStates();
 
 var selectedState = document.getElementById("dropDownBody");
 selectedState.addEventListener("change", function() {
-  checkCheckStates(selectedState.value); // creamos un addevent listener porque queremos que cada vez que elijamos un estado, ocurra una acción
+  partyAndState(selectedState.value); // creamos un addevent listener porque queremos que cada vez que elijamos un estado, ocurra una acción
 });
 function checkCheckStates(stateValue) {
   // creamos una función para añadir la información de los miembros al selected state, de esa forma, aparecerá toda la información
@@ -216,7 +216,7 @@ function checkCheckStates(stateValue) {
     // if (stateValue == "AALL") {
     //   display = "block";
   }
-  allTable(filteredMembersByState); // mostramos la tabla con la información de filteredMembersByState
+  return filteredMembersByState; // mostramos la tabla con la información de filteredMembersByState
 }
 
 // checkCheckStates();
@@ -224,34 +224,42 @@ function checkCheckStates(stateValue) {
 ////Función para que aparezca la información de checkboxes y dropdown ///////
 
 function partyAndState(object) {
-  var selectedParties = document.querySelectorAll(
-    "input[name=checkboxes]:checked"
+  var selectedParties = Array.from(
+    document.querySelectorAll("input[name=checkboxes]:checked")
   );
 
   var selectedStates = document.getElementById("dropDownBody").value;
+  console.log(selectedParties);
   var membersToShow = [];
   let membersFilteredByParty = checkCheckBoxes();
   let membersFilteredByStates = checkCheckStates(selectedStates);
-  if (selectedParties === "" && selectedStates === "") {
+  if (selectedParties.length === 0 && selectedStates === "") {
     for (i = 0; i < members.length; i++) {
       membersToShow.push(members[i]);
     }
     allTable(membersToShow);
-  }
-  if (selectedParties != "" && selectedStates === "") {
+  } else if (selectedParties.length !== 0 && selectedStates === "") {
     allTable(membersFilteredByParty);
     console.log(membersFilteredByParty);
-  }
-  if (selectedParties === "" && selectedStates != "") {
+  } else if (selectedParties.length === 0 && selectedStates != "") {
     allTable(membersFilteredByStates);
     console.log(membersFilteredByStates);
   } else {
-    var membersFilteredByPartyAndStates = membersFilteredByParty.concat(
-      membersFilteredByStates
-    );
+    console.log(membersFilteredByParty);
+    console.log(membersFilteredByStates);
+    membersToShow.push(membersFilteredByParty);
+    membersToShow.push(membersFilteredByStates);
 
-    console.log("pands" + membersFilteredByPartyAndStates);
+    var membersFilteredByPartyAndStates = membersToShow.flat();
+    // var membersFilteredByPartyAndStates = membersFilteredByParty.concat(
+    //   membersFilteredByStates
+    // );
+
+    console.log(membersFilteredByPartyAndStates);
     allTable(membersFilteredByPartyAndStates);
   }
 }
 // partyAndState();
+
+///////////////////////////////////Loader////////////////////////////////
+$("#loader").addClass("hide-loader");
