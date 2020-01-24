@@ -257,7 +257,7 @@ function partyAndState(object) {
     allTable(membersFilteredByParty);
   } else if (selectedParties.length === 0 && selectedStates != "") {
     let membersFilteredByStates = checkCheckStates(selectedStates, members);
-    allTable(membersFilteredByStates);
+    membersFilteredByStates;
   } else if (selectedParties.length === 0 && selectedStates === "") {
     {
       membersToShow;
