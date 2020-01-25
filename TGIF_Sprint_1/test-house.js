@@ -496,8 +496,6 @@ function calcLeastLoyal() {
   var lastElement = statistics.leastLoyal[statistics.leastLoyal.length - 1];
 
   for (i = tenPercent; i < sortedList.length; i++) {
-    console.log(i);
-    console.log(sortedList.length);
     if (
       lastElement.votes_against_party_pct ==
         sortedList[i].votes_against_party_pct &&
@@ -508,13 +506,14 @@ function calcLeastLoyal() {
   }
 }
 
-/**********************Render table Least Loyal House****************************/
+/**********************Render table Least Loyal****************************/
 
 // var members = data.results[0].members;
 
 function renderLeastLoyalTable() {
   var tbody = document.getElementById("house-data4");
   for (var i = 0; i < statistics.leastLoyal.length; i++) {
+    // var leastLoyal = statistics.leastLoyal[i];
     var firstName = statistics.leastLoyal[i].first_name;
     var middleName = statistics.leastLoyal[i].middle_name;
     var lastName = statistics.leastLoyal[i].last_name;
@@ -531,10 +530,12 @@ function renderLeastLoyalTable() {
     }
     tr.appendChild(td1);
 
+    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = numVotes;
     tr.appendChild(td2);
 
+    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = votesAgainstPartyPct;
     tr.appendChild(td3);
@@ -549,11 +550,12 @@ function renderLeastLoyalTable() {
 
 /***************Function to get Most loyal 10% House ****************/
 
+// var members = data.results[0].members;
+
 function calcMostLoyal() {
   var sortedList = members.sort(function mySorter(a, b) {
     return a.votes_with_party_pct - b.votes_with_party_pct;
   });
-
   var tenPercent = sortedList.length * 0.1;
 
   for (i = 0; i < sortedList.length; i++) {
@@ -572,8 +574,12 @@ function calcMostLoyal() {
     }
   }
 }
+// console.log(statistics.mostLoyal);
+// calcMostLoyal(statistics.mostLoyal);
 
 /**********************Render table Most Loyal****************************/
+
+// var members = data.results[0].members;
 
 function renderMostLoyalTable() {
   var tbody = document.getElementById("house-data5");
@@ -594,10 +600,12 @@ function renderMostLoyalTable() {
     }
     tr.appendChild(td1);
 
+    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = numVotes;
     tr.appendChild(td2);
 
+    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = votesWithPartyPct;
     tr.appendChild(td3);
@@ -605,3 +613,6 @@ function renderMostLoyalTable() {
     tbody.appendChild(tr);
   }
 }
+// if (document.title === "House Loyalty") {
+//   renderMostLoyalTable();
+// }
