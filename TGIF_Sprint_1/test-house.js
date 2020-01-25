@@ -553,6 +553,7 @@ function calcMostLoyal() {
   var sortedList = members.sort(function mySorter(a, b) {
     return a.votes_with_party_pct - b.votes_with_party_pct;
   });
+
   var tenPercent = sortedList.length * 0.1;
 
   for (i = 0; i < sortedList.length; i++) {

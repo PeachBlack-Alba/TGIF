@@ -25,8 +25,6 @@ function getDataSenate() {
         dropdownEventListener();
       }
       if (document.title.includes("Senate Loyalty")) {
-        console.log(data);
-
         calcTotalMembers(members);
         calculateTotalPercentageVotes();
         renderSenateAtGlance("Democrats");
@@ -38,8 +36,6 @@ function getDataSenate() {
         renderMostLoyalTable();
       }
       if (document.title.includes("Senate Attendance")) {
-        console.log(data);
-
         calcTotalMembers(members);
         calculateTotalPercentageVotes();
         renderSenateAtGlance("Democrats");
@@ -151,7 +147,7 @@ function renderSenateAtGlance(target) {
   var td2 = document.createElement("td");
   var td3 = document.createElement("td");
   td1.innerHTML = target;
-
+  var tbody = document.getElementById("senate-data");
   if (target === "Democrats") {
     td2.innerHTML = statistics.democrats.count;
     td3.innerHTML = Math.round(statistics.democrats.percentage);
@@ -378,8 +374,6 @@ function renderLeastLoyalTable() {
 // var members = data.results[0].members;
 
 function calcMostLoyal() {
-  // var mostLoyaloyal = [];
-
   var sortedList = members.sort(function mySorter(a, b) {
     return a.votes_with_party_pct - b.votes_with_party_pct;
   });
@@ -392,7 +386,7 @@ function calcMostLoyal() {
   }
 
   var lastElement = statistics.mostLoyal[statistics.mostLoyal.length - 1];
-  for (i = tenPercent; i < sortedList.length; i++) {
+  for (i = Math.round(tenPercent); i < sortedList.length; i++) {
     if (
       lastElement.votes_with_party_pct == sortedList[i].votes_with_party_pct &&
       lastElement.id !== sortedList[i].id
@@ -427,12 +421,10 @@ function renderMostLoyalTable() {
     }
     tr.appendChild(td1);
 
-    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = numVotes;
     tr.appendChild(td2);
 
-    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = votesWithPartyPct;
     tr.appendChild(td3);
