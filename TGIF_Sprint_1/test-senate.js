@@ -17,13 +17,14 @@ function getDataSenate() {
     .then(function(data) {
       console.log(data);
       members = data.results[0].members;
-      if (document.tittle.includes("Senate113")) {
+      if (document.title.includes("Senate113")) {
         allTable(members);
-        checkCheckBoxes();
         createStates();
-        checkCheckStates();
+
+        CheckBoxesEventListeners();
+        dropdownEventListener();
       }
-      if (document.tittle.includes("Senate Loyalty")) {
+      if (document.title.includes("Senate Loyalty")) {
         console.log(data);
 
         calcTotalMembers(members);
@@ -36,7 +37,7 @@ function getDataSenate() {
         calcMostLoyal();
         renderMostLoyalTable();
       }
-      if (document.tittle.includes("Senate Attendance")) {
+      if (document.title.includes("Senate Attendance")) {
         console.log(data);
 
         calcTotalMembers(members);
@@ -620,6 +621,7 @@ function checkCheckStates(stateValue, members) {
   }
   allTable(filteredMembersByState); // mostramos la tabla con la información de filteredMembersByState
 }
+
 //////////////////////////Función para que aparezca la información de checkboxes y dropdown/////////////////////////////
 
 function partyAndState() {
