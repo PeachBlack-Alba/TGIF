@@ -1,7 +1,6 @@
 ///////////////Fetch function////////////
-var members = data.results[0].members;
+var members = [];
 //API key-y7Nmx6XhWENj7wlayywv15b3CFQtMiExtWTeVU2o
-var members;
 var urlHouse = "https://api.propublica.org/congress/v1/113/house/members.json";
 var urlSenate =
   "https://api.propublica.org/congress/v1/113/senate/members.json";
@@ -26,7 +25,7 @@ function getDataSenate() {
       }
       if (document.tittle.includes("Senate Loyalty")) {
         console.log(data);
-        members = data.results[0].members;
+
         calcTotalMembers(members);
         calculateTotalPercentageVotes();
         renderSenateAtGlance("Democrats");
@@ -39,7 +38,7 @@ function getDataSenate() {
       }
       if (document.tittle.includes("Senate Attendance")) {
         console.log(data);
-        members = data.results[0].members;
+
         calcTotalMembers(members);
         calculateTotalPercentageVotes();
         renderSenateAtGlance("Democrats");
@@ -90,13 +89,12 @@ var statistics = {
 
 /*************************************first column************************/
 
-var members = data.results[0].members;
+// var members = data.results[0].members;
 
-var tbody = document.getElementById("senate-data");
-
-calcTotalMembers();
+// calcTotalMembers();
 
 function calcTotalMembers() {
+  var tbody = document.getElementById("senate-data");
   for (var i = 0; i < members.length; i++) {
     var party = members[i].party;
 
@@ -142,7 +140,7 @@ function calculateTotalPercentageVotes() {
   statistics.democrats.percentage = totalD / statistics.democrats.count;
   statistics.independents.percentage = totalI / statistics.independents.count;
 }
-calculateTotalPercentageVotes();
+// calculateTotalPercentageVotes();
 
 /************************************Render table****************************************/
 
@@ -170,20 +168,19 @@ function renderSenateAtGlance(target) {
 
   tbody.appendChild(tr);
 }
-renderSenateAtGlance("Democrats");
-renderSenateAtGlance("Republicans");
-renderSenateAtGlance("Independents");
+// renderSenateAtGlance("Democrats");
+// renderSenateAtGlance("Republicans");
+// renderSenateAtGlance("Independents");
 
 /////////////////////////////////Least Engaged Senate////////////////////////////////
 
 //object for this function is on the top of the page//
-var members = data.results[0].members;
-
-var tbody = document.getElementById("senate-data2");
+// var members = data.results[0].members;
 
 /*******Function to get Least Engaged 10% missed votes******/
 
 function calcMissedVotes() {
+  var tbody = document.getElementById("senate-data2");
   var sortedMembers = members.sort(function mySorter(a, b) {
     return a.missed_votes_pct - b.missed_votes_pct; // Because its an object, we cant use just sort.(), it loops each member member a memberb and access the key in the object. Gets the value of the key and compares with a and b and does the order.
   });
@@ -197,14 +194,13 @@ function calcMissedVotes() {
     }
   }
 }
-calcMissedVotes();
+// calcMissedVotes();
 
 /*********RENDER in a table CalcMissedVotes*********/
-var members = data.results[0].members;
-
-var tbody = document.getElementById("senate-data2");
+// var members = data.results[0].members;
 
 function renderLeastEngagedTable() {
+  var tbody = document.getElementById("senate-data2");
   for (var i = 0; i < statistics.leastEngaged.length; i++) {
     var leastEngaged = statistics.leastEngaged[i];
     var firstName = leastEngaged.first_name;
@@ -258,13 +254,13 @@ function calcMostEngaged() {
     }
   }
 }
-calcMostEngaged();
+// calcMostEngaged();
 // console.log(statistics.mostEngaged);
 
 /********************Render in a table Most engaged 10%***************************/
-var tbody = document.getElementById("senate-data3");
 
 function renderMostEngagedTable() {
+  var tbody = document.getElementById("senate-data3");
   for (var i = 0; i < statistics.mostEngaged.length; i++) {
     var mostEngaged = statistics.mostEngaged[i];
     var firstName = mostEngaged.first_name;
@@ -304,7 +300,7 @@ if (document.title === "Senate Attendance") {
 //object for this function is on the top of the page//
 
 /***************Function to get least loyal 10% ****************/
-var members = data.results[0].members;
+// var members = data.results[0].members;
 
 function calcLeastLoyal() {
   var sortedList = members.sort(function mySorter(a, b) {
@@ -329,14 +325,14 @@ function calcLeastLoyal() {
     }
   }
 }
-calcLeastLoyal(statistics.leastLoyal);
+// calcLeastLoyal(statistics.leastLoyal);
 
 /**********************Render table Least Loyal****************************/
 
-var members = data.results[0].members;
+// var members = data.results[0].members;
 
-var tbody = document.getElementById("senate-data4");
 function renderLeastLoyalTable() {
+  var tbody = document.getElementById("senate-data4");
   for (var i = 0; i < statistics.leastLoyal.length; i++) {
     // var leastLoyal = statistics.leastLoyal[i];
     var firstName = statistics.leastLoyal[i].first_name;
@@ -368,9 +364,9 @@ function renderLeastLoyalTable() {
     tbody.appendChild(tr);
   }
 }
-if (document.title === "Senate Loyalty") {
-  renderLeastLoyalTable();
-}
+// if (document.title === "Senate Loyalty") {
+//   renderLeastLoyalTable();
+// }
 
 /////////////////////////////////Most Loyal Senate////////////////////////////////
 
@@ -378,7 +374,7 @@ if (document.title === "Senate Loyalty") {
 
 /***************Function to get Most loyal 10% ****************/
 
-var members = data.results[0].members;
+// var members = data.results[0].members;
 
 function calcMostLoyal() {
   // var mostLoyaloyal = [];
@@ -404,15 +400,14 @@ function calcMostLoyal() {
     }
   }
 }
-// console.log(statistics.mostLoyal);
-calcMostLoyal(statistics.mostLoyal);
+// calcMostLoyal(statistics.mostLoyal);
 
 /**********************Render table Most Loyal****************************/
 
-var members = data.results[0].members;
+// var members = data.results[0].members;
 
-var tbody = document.getElementById("senate-data5");
 function renderMostLoyalTable() {
+  var tbody = document.getElementById("senate-data5");
   for (var i = 0; i < statistics.mostLoyal.length; i++) {
     // var mostLoyal = statistics.mostLoyal[i];
     var firstName = statistics.mostLoyal[i].first_name;
@@ -444,16 +439,16 @@ function renderMostLoyalTable() {
     tbody.appendChild(tr);
   }
 }
-if (document.title === "Senate Loyalty") {
-  renderMostLoyalTable();
-}
+// if (document.title === "Senate Loyalty") {
+//   renderMostLoyalTable();
+// }
 
 //////////////General Table///////////////////////
 
-var members = data.results[0].members;
+// var members = data.results[0].members;
 
-var tbody = document.getElementById("senate-data");
 function allTable(members) {
+  var tbody = document.getElementById("senate-data");
   tbody.innerHTML = ""; //we clear the table so it doesn't print first members and then filtered members
   for (var i = 0; i < members.length; i++) {
     var firstName = members[i].first_name;
@@ -497,35 +492,38 @@ function allTable(members) {
     tbody.appendChild(tr);
   }
 }
-document.write(allTable(members));
+// document.write(allTable(members));
 ///////////////////////////////////CheckBoxes////////////////////////////////
 
 //Republican//
+function CheckBoxesEventListeners() {
+  var partyR = document.getElementById("republican");
 
-var partyR = document.getElementById("republican");
+  partyR.addEventListener("click", function(e) {
+    // checkCheckBoxes();
+    partyAndState();
+  });
 
-partyR.addEventListener("click", function(e) {
-  checkCheckBoxes();
-});
+  //Democrat//
 
-//Democrat//
+  var partyD = document.getElementById("democrat");
 
-var partyD = document.getElementById("democrat");
+  partyD.addEventListener("click", function(e) {
+    // checkCheckBoxes();
+    partyAndState();
+  });
 
-partyD.addEventListener("click", function(e) {
-  checkCheckBoxes();
-});
+  //Inpendendent//
 
-//Inpendendent//
+  var partyI = document.getElementById("independent");
 
-var partyI = document.getElementById("independent");
+  var alert = document.getElementById("alert");
 
-var alert = document.getElementById("alert");
-console.log(partyI.checked);
-
-partyI.addEventListener("click", function(e) {
-  checkCheckBoxes();
-});
+  partyI.addEventListener("click", function(e) {
+    // checkCheckBoxes();
+    partyAndState();
+  });
+}
 //////////////////////////Function checkcheckboxes/////////////////
 function checkCheckBoxes() {
   var partyR = document.getElementById("republican");
@@ -537,7 +535,7 @@ function checkCheckBoxes() {
   );
   var checkboxesValue = [];
   for (i = 0; i < checkboxes.length; i++) {
-    checkboxesValue.push(checkboxes[i].value); //.map(elt => elt.value)
+    checkboxesValue.push(checkboxes[i].value); //push value in to an empty array
   }
 
   var filteredMembers = [];
@@ -566,10 +564,9 @@ function checkCheckBoxes() {
   ) {
     document.getElementById("alert").style.display = "none"; // if any checkboxes is checked, don't show alert
   }
-
-  allTable(filteredMembers); // call the function with the general table to print it with the filtered memebers
+  return filteredMembers; // call the function with the general table to print it with the filtered memebers
 }
-checkCheckBoxes();
+// checkCheckBoxes();
 //////////////////////////////DropDown Filter by State/////////////////////////////////////////////////
 
 ///Función para crear el dropdown y filtrar los repetidos////////
@@ -597,20 +594,24 @@ function createStates() {
   }
   console.log(filteredStates);
 }
-createStates();
 
-//// función para crear filteredmembersbystate////
-
-var selectedState = document.getElementById("dropDownBody");
-selectedState.addEventListener("change", function() {
-  checkCheckStates(selectedState.value); // creamos un addevent listener porque queremos que cada vez que elijamos un estado, ocurra una acción
-});
-function checkCheckStates(stateValue) {
+////////////////////////////////// función para crear filteredmembersbystate/////////////////////////////
+function dropdownEventListener() {
+  var selectedState = document.getElementById("dropDownBody");
+  selectedState.addEventListener("change", function() {
+    partyAndState(); // creamos un addevent listener porque queremos que cada vez que elijamos un estado, ocurra una acción
+  });
+}
+function checkCheckStates(stateValue, members) {
   // creamos una función para añadir la información de los miembros al selected state, de esa forma, aparecerá toda la información
   var checkStates = document.getElementById("");
-
+  console.log(members);
   var filteredMembersByState = []; // creamos empty array
-
+  if (stateValue === "") {
+    for (i = 0; i < members.length; i++) {
+      filteredMembersByState.push(members[i]);
+    }
+  }
   for (i = 0; i < members.length; i++) {
     // loop todos los miembros
     if (stateValue == members[i].state) {
@@ -619,7 +620,30 @@ function checkCheckStates(stateValue) {
   }
   allTable(filteredMembersByState); // mostramos la tabla con la información de filteredMembersByState
 }
+//////////////////////////Función para que aparezca la información de checkboxes y dropdown/////////////////////////////
 
-checkCheckStates();
+function partyAndState() {
+  var selectedParties = Array.from(
+    document.querySelectorAll("input[name=checkboxes]:checked")
+  );
 
-////Función para que aparezca la información de checkboxes y dropdown //////
+  var selectedStates = document.getElementById("dropDownBody").value;
+  var membersToShow = [];
+
+  if (selectedParties.length === 0 && selectedStates === "") {
+    for (i = 0; i < members.length; i++) {
+      membersToShow.push(members[i]);
+    }
+    allTable(membersToShow);
+  } else if (selectedParties.length !== 0 && selectedStates === "") {
+    let membersFilteredByParty = checkCheckBoxes();
+    allTable(membersFilteredByParty);
+  } else if (selectedParties.length === 0 && selectedStates != "") {
+    let membersFilteredByStates = checkCheckStates(selectedStates, members);
+    membersFilteredByStates;
+  } else {
+    let test = checkCheckBoxes();
+
+    checkCheckStates(selectedStates, test);
+  }
+}

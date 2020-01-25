@@ -209,7 +209,7 @@ function createStates() {
   console.log(filteredStates);
 }
 
-//// función para crear filteredmembersbystate////
+////////////////////////////////// función para crear filteredmembersbystate/////////////////////////////
 function dropdownEventListener() {
   var selectedState = document.getElementById("dropDownBody");
   selectedState.addEventListener("change", function() {
@@ -231,13 +231,11 @@ function checkCheckStates(stateValue, members) {
     if (stateValue == members[i].state) {
       filteredMembersByState.push(members[i]); // añadimos toda la información del miembro en cuestión al nuevo array que hemos creado
     }
-    // if (stateValue == "AALL") {
-    //   display = "block";
   }
   allTable(filteredMembersByState); // mostramos la tabla con la información de filteredMembersByState
 }
 
-////Función para que aparezca la información de checkboxes y dropdown ///////
+//////////////////////////Función para que aparezca la información de checkboxes y dropdown/////////////////////////////
 
 function partyAndState() {
   var selectedParties = Array.from(
@@ -264,7 +262,7 @@ function partyAndState() {
     checkCheckStates(selectedStates, test);
   }
 }
-// partyAndState();
+
 /////////////////////////////////HOUSE at a Glance TABLE///////////////////////////////////////
 
 /*********************************object*****************************************************/
@@ -295,12 +293,6 @@ var statistics = {
 };
 
 /*************************************first column************************/
-
-// var members = data.results[0].members;
-
-// var tbody = document.getElementById("house-data");
-
-// calcTotalMembers();
 
 function calcTotalMembers() {
   for (var i = 0; i < members.length; i++) {
@@ -342,13 +334,11 @@ function calculateTotalPercentageVotes() {
       totalI = totalI + membersInd;
     }
   }
-  // console.log(totalD);
 
   statistics.republicans.percentage = totalR / statistics.republicans.count;
   statistics.democrats.percentage = totalD / statistics.democrats.count;
   statistics.independents.percentage = totalI / statistics.independents.count;
 }
-// calculateTotalPercentageVotes();
 
 /************************************Render table****************************************/
 
@@ -376,15 +366,8 @@ function renderHouseAtGlance(target) {
 
   tbody.appendChild(tr);
 }
-// renderHouseAtGlance("Democrats");
-// renderHouseAtGlance("Republicans");
-// renderHouseAtGlance("Independents");
 
 /////////////////////////////////Least Engaged House////////////////////////////////
-
-//object for this function is on the top of the page//
-// var members = data.results[0].members;
-// var tbody = document.getElementById("house-data2");
 
 /*******Function to get Least Engaged 10% missed votes******/
 
@@ -402,7 +385,6 @@ function calcMissedVotes() {
     }
   }
 }
-// calcMissedVotes();
 
 /*********RENDER in a table CalcMissedVotes*********/
 
@@ -425,12 +407,10 @@ function renderLeastEngagedTable() {
     }
     tr.appendChild(td1);
 
-    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = missedVotes;
     tr.appendChild(td2);
 
-    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = missedVotesPct;
     tr.appendChild(td3);
@@ -460,8 +440,6 @@ function calcMostEngaged() {
     }
   }
 }
-// calcMostEngaged();
-// console.log(statistics.mostEngaged);
 
 /********************Render in a table Most engaged 10%***************************/
 
@@ -484,12 +462,10 @@ function renderMostEngagedTable() {
     }
     tr.appendChild(td1);
 
-    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = missedVotes;
     tr.appendChild(td2);
 
-    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = missedVotesPct;
     tr.appendChild(td3);
@@ -497,9 +473,6 @@ function renderMostEngagedTable() {
     tbody.appendChild(tr);
   }
 }
-// if (document.title === "House attendance") {
-//   renderMostEngagedTable();
-// }
 
 /////////////////////////////////Least Loyal House////////////////////////////////
 
@@ -509,8 +482,6 @@ function renderMostEngagedTable() {
 // var members = data.results[0].members;
 
 function calcLeastLoyal() {
-  // var leastLoyal = [];
-
   var sortedList = members.sort(function mySorter(a, b) {
     return a.votes_against_party_pct - b.votes_against_party_pct;
   });
@@ -536,7 +507,6 @@ function calcLeastLoyal() {
     }
   }
 }
-// calcLeastLoyal(statistics.leastLoyal);
 
 /**********************Render table Least Loyal House****************************/
 
@@ -561,12 +531,10 @@ function renderLeastLoyalTable() {
     }
     tr.appendChild(td1);
 
-    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = numVotes;
     tr.appendChild(td2);
 
-    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = votesAgainstPartyPct;
     tr.appendChild(td3);
@@ -574,9 +542,6 @@ function renderLeastLoyalTable() {
     tbody.appendChild(tr);
   }
 }
-// if (document.title === "House Loyalty") {
-//   renderLeastLoyalTable();
-// }
 
 /////////////////////////////////Most Loyal House////////////////////////////////
 
@@ -606,8 +571,6 @@ function calcMostLoyal() {
     }
   }
 }
-// console.log(statistics.mostLoyal);
-// calcMostLoyal(statistics.mostLoyal);
 
 /**********************Render table Most Loyal****************************/
 
@@ -630,12 +593,10 @@ function renderMostLoyalTable() {
     }
     tr.appendChild(td1);
 
-    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = numVotes;
     tr.appendChild(td2);
 
-    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = votesWithPartyPct;
     tr.appendChild(td3);
@@ -643,6 +604,3 @@ function renderMostLoyalTable() {
     tbody.appendChild(tr);
   }
 }
-// if (document.title === "House Loyalty") {
-//   renderMostLoyalTable();
-// }
