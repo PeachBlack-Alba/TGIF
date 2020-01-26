@@ -20,7 +20,6 @@ function getDataSenate() {
       if (document.title.includes("Senate113")) {
         allTable(members);
         createStates();
-
         CheckBoxesEventListeners();
         dropdownEventListener();
       }
@@ -131,13 +130,11 @@ function calculateTotalPercentageVotes() {
       totalI = totalI + membersInd;
     }
   }
-  // console.log(totalD);
 
   statistics.republicans.percentage = totalR / statistics.republicans.count;
   statistics.democrats.percentage = totalD / statistics.democrats.count;
   statistics.independents.percentage = totalI / statistics.independents.count;
 }
-// calculateTotalPercentageVotes();
 
 /************************************Render table****************************************/
 
@@ -165,9 +162,6 @@ function renderSenateAtGlance(target) {
 
   tbody.appendChild(tr);
 }
-// renderSenateAtGlance("Democrats");
-// renderSenateAtGlance("Republicans");
-// renderSenateAtGlance("Independents");
 
 /////////////////////////////////Least Engaged Senate////////////////////////////////
 
@@ -191,7 +185,6 @@ function calcMissedVotes() {
     }
   }
 }
-// calcMissedVotes();
 
 /*********RENDER in a table CalcMissedVotes*********/
 // var members = data.results[0].members;
@@ -215,21 +208,16 @@ function renderLeastEngagedTable() {
     }
     tr.appendChild(td1);
 
-    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = missedVotes;
     tr.appendChild(td2);
 
-    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = missedVotesPct;
     tr.appendChild(td3);
 
     tbody.appendChild(tr);
   }
-}
-if (document.title === "Senate Attendance") {
-  renderLeastEngagedTable();
 }
 
 /////////////////////////////////Most Engaged Senate////////////////////////////////
@@ -251,8 +239,6 @@ function calcMostEngaged() {
     }
   }
 }
-// calcMostEngaged();
-// console.log(statistics.mostEngaged);
 
 /********************Render in a table Most engaged 10%***************************/
 

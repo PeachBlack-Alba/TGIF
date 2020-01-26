@@ -506,41 +506,38 @@ function calcLeastLoyal() {
   }
 }
 
-/**********************Render table Least Loyal****************************/
+/**********************Render table Least Loyal House****************************/
 
 // var members = data.results[0].members;
 
 function renderLeastLoyalTable() {
   var tbody = document.getElementById("house-data4");
   for (var i = 0; i < statistics.leastLoyal.length; i++) {
-    // var leastLoyal = statistics.leastLoyal[i];
     var firstName = statistics.leastLoyal[i].first_name;
     var middleName = statistics.leastLoyal[i].middle_name;
     var lastName = statistics.leastLoyal[i].last_name;
     var numVotes = statistics.leastLoyal[i].total_votes;
     var votesAgainstPartyPct = statistics.leastLoyal[i].votes_against_party_pct;
-    if (votesAgainstPartyPct != 0 && votesAgainstPartyPct != null) {
-      var tr = document.createElement("tr");
-      var td1 = document.createElement("td");
-      var td2 = document.createElement("td");
-      var td3 = document.createElement("td");
-    }
 
-    if (votesAgainstPartyPct != 0 && votesAgainstPartyPct != null) {
-      if (middleName === null) {
-        td1.innerHTML = firstName + " " + lastName;
-      } else {
-        td1.innerHTML = firstName + " " + middleName + " " + lastName;
-      }
-      td2.innerHTML = numVotes;
-      td3.innerHTML = votesAgainstPartyPct;
+    var tr = document.createElement("tr");
+    var td1 = document.createElement("td");
 
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
+    if (middleName === null) {
+      td1.innerHTML = firstName + " " + lastName;
+    } else {
+      td1.innerHTML = firstName + " " + middleName + " " + lastName;
     }
+    tr.appendChild(td1);
+
     // var tr2 = document.createElement("tr");
+    var td2 = document.createElement("td");
+    td2.innerHTML = numVotes;
+    tr.appendChild(td2);
+
     // var tr3 = document.createElement("tr");
+    var td3 = document.createElement("td");
+    td3.innerHTML = votesAgainstPartyPct;
+    tr.appendChild(td3);
 
     tbody.appendChild(tr);
   }
@@ -576,8 +573,6 @@ function calcMostLoyal() {
     }
   }
 }
-// console.log(statistics.mostLoyal);
-// calcMostLoyal(statistics.mostLoyal);
 
 /**********************Render table Most Loyal****************************/
 
@@ -615,6 +610,3 @@ function renderMostLoyalTable() {
     tbody.appendChild(tr);
   }
 }
-// if (document.title === "House Loyalty") {
-//   renderMostLoyalTable();
-// }
