@@ -18,14 +18,14 @@ function getDataHouse() {
       console.log(data);
       members = data.results[0].members;
       if (document.title.includes("House113")) {
+        loader();
         allTable(members);
-        // checkCheckBoxes();
         createStates();
-
         CheckBoxesEventListeners();
         dropdownEventListener();
       }
       if (document.title.includes("House Loyalty")) {
+        loader();
         calcTotalMembers(members);
         calculateTotalPercentageVotes();
         renderHouseAtGlance("Democrats");
@@ -37,6 +37,7 @@ function getDataHouse() {
         renderMostLoyalTable();
       }
       if (document.title.includes("House attendance")) {
+        loader();
         calcTotalMembers(members);
         calculateTotalPercentageVotes();
         renderHouseAtGlance("Democrats");
@@ -607,4 +608,12 @@ function renderMostLoyalTable() {
 
     tbody.appendChild(tr);
   }
+}
+
+/////////////////////////////Loader///////////////////////////////////////
+function loader() {
+  var loader = document.getElementById("loader");
+  window.onload = function() {
+    loader.style.display = "none";
+  };
 }

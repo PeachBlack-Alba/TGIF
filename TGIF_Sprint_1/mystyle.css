@@ -61,6 +61,37 @@ body {
 /*******************************Spinner*********************/
 
 .loader {
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #05788c;
+  border-bottom: 10px solid #05788c;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 
+.loader {
   z-index: 99;
   top: 0;
   left: 0;
@@ -80,7 +111,7 @@ body {
     opacity: 0;
     visibility: hidden;
   }
-}
+} */
 /**************************Read More*************************/
 
 /***********************Footer*****************************/
