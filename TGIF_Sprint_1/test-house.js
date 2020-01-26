@@ -529,12 +529,10 @@ function renderLeastLoyalTable() {
     }
     tr.appendChild(td1);
 
-    // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
     td2.innerHTML = numVotes;
     tr.appendChild(td2);
 
-    // var tr3 = document.createElement("tr");
     var td3 = document.createElement("td");
     td3.innerHTML = votesAgainstPartyPct;
     tr.appendChild(td3);
