@@ -519,26 +519,28 @@ function renderLeastLoyalTable() {
     var lastName = statistics.leastLoyal[i].last_name;
     var numVotes = statistics.leastLoyal[i].total_votes;
     var votesAgainstPartyPct = statistics.leastLoyal[i].votes_against_party_pct;
-
-    var tr = document.createElement("tr");
-    var td1 = document.createElement("td");
-
-    if (middleName === null) {
-      td1.innerHTML = firstName + " " + lastName;
-    } else {
-      td1.innerHTML = firstName + " " + middleName + " " + lastName;
+    if (votesAgainstPartyPct != 0 && votesAgainstPartyPct != null) {
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td");
+      var td2 = document.createElement("td");
+      var td3 = document.createElement("td");
     }
-    tr.appendChild(td1);
 
+    if (votesAgainstPartyPct != 0 && votesAgainstPartyPct != null) {
+      if (middleName === null) {
+        td1.innerHTML = firstName + " " + lastName;
+      } else {
+        td1.innerHTML = firstName + " " + middleName + " " + lastName;
+      }
+      td2.innerHTML = numVotes;
+      td3.innerHTML = votesAgainstPartyPct;
+
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+    }
     // var tr2 = document.createElement("tr");
-    var td2 = document.createElement("td");
-    td2.innerHTML = numVotes;
-    tr.appendChild(td2);
-
     // var tr3 = document.createElement("tr");
-    var td3 = document.createElement("td");
-    td3.innerHTML = votesAgainstPartyPct;
-    tr.appendChild(td3);
 
     tbody.appendChild(tr);
   }
