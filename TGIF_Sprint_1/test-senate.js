@@ -18,12 +18,14 @@ function getDataSenate() {
       console.log(data);
       members = data.results[0].members;
       if (document.title.includes("Senate113")) {
+        loader();
         allTable(members);
         createStates();
         CheckBoxesEventListeners();
         dropdownEventListener();
       }
       if (document.title.includes("Senate Loyalty")) {
+        loader();
         calcTotalMembers(members);
         calculateTotalPercentageVotes();
         renderSenateAtGlance("Democrats");
@@ -35,6 +37,7 @@ function getDataSenate() {
         renderMostLoyalTable();
       }
       if (document.title.includes("Senate Attendance")) {
+        loader();
         calcTotalMembers(members);
         calculateTotalPercentageVotes();
         renderSenateAtGlance("Democrats");
@@ -626,4 +629,11 @@ function partyAndState() {
 
     checkCheckStates(selectedStates, test);
   }
+}
+
+//////////////////////////////////////////////////Loader///////////////////////////////////
+function loader() {
+  var loader = document.getElementById("loader");
+  console.log("test");
+  loader.style.display = "none";
 }

@@ -613,7 +613,6 @@ function renderMostLoyalTable() {
 /////////////////////////////Loader///////////////////////////////////////
 function loader() {
   var loader = document.getElementById("loader");
-  window.onload = function() {
-    loader.style.display = "none";
-  };
+  console.log("test");
+  loader.style.display = "none";
 }
