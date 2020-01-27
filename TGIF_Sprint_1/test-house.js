@@ -317,7 +317,6 @@ function calcTotalMembers() {
 }
 
 /********************************function calculateTotalPercentageVotes***********************/
-
 function calculateTotalPercentageVotes() {
   var totalR = 0;
   var totalD = 0;
@@ -335,12 +334,12 @@ function calculateTotalPercentageVotes() {
       totalI = totalI + membersInd;
     }
   }
+  // console.log(totalD);
 
   statistics.republicans.percentage = totalR / statistics.republicans.count;
   statistics.democrats.percentage = totalD / statistics.democrats.count;
   statistics.independents.percentage = totalI / statistics.independents.count;
 }
-
 /************************************Render table****************************************/
 
 function renderHouseAtGlance(target) {
@@ -358,7 +357,7 @@ function renderHouseAtGlance(target) {
     td3.innerHTML = Math.round(statistics.republicans.percentage);
   } else {
     td2.innerHTML = statistics.independents.count;
-    td3.innerHTML = Math.round(statistics.independents.percentage);
+    td3.innerHTML = "-";
   }
 
   tr.appendChild(td1);
@@ -489,7 +488,10 @@ function calcLeastLoyal() {
   var tenPercent = sortedList.length * 0.1;
 
   for (i = 0; i < sortedList.length; i++) {
-    if (statistics.leastLoyal.length <= tenPercent) {
+    if (
+      statistics.leastLoyal.length <= tenPercent &&
+      sortedList[i].total_votes != 0
+    ) {
       statistics.leastLoyal.push(sortedList[i]);
     }
   }
@@ -557,7 +559,10 @@ function calcMostLoyal() {
   var tenPercent = sortedList.length * 0.1;
 
   for (i = 0; i < sortedList.length; i++) {
-    if (statistics.mostLoyal.length <= tenPercent) {
+    if (
+      statistics.mostLoyal.length <= tenPercent &&
+      sortedList[i].votes_with_party_pct != 0
+    ) {
       statistics.mostLoyal.push(sortedList[i]);
     }
   }
@@ -595,6 +600,9 @@ function renderMostLoyalTable() {
       td1.innerHTML = firstName + " " + middleName + " " + lastName;
     }
     tr.appendChild(td1);
+    // if (votes_with_party_pct == 0 || votes_with_party_pct == null) {
+    //   display = none;
+    // }
 
     // var tr2 = document.createElement("tr");
     var td2 = document.createElement("td");
